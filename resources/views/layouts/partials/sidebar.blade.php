@@ -68,6 +68,12 @@
         <i class="fas fa-fw fa-users"></i>
         <span>Data Kematian</span>
          </a>
+         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Data Pemabangunan</span>
+         </a>
     </li>
      @endif
     @if (auth()->user()->role == 'admin')
