@@ -13,6 +13,7 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
+                                <img src="{{asset('img/logo-brebes.jpg')}}" alt="" class="w-25 mb-4">
                                 <h1 class="h4 text-gray-900 mb-4">
                                     {{env('APP_NAME')}}
                                 </h1>

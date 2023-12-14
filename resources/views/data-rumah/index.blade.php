@@ -81,6 +81,10 @@
                                     <a href="{{ route('data-rumah.show',$row->id) }}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('data-rumah.edit',$row->id) }}" class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
                                     <a href="{{ route('data-rumah.destroy',$row->id) }}" class="btn btn-danger btn-sm delete-data"><i class="fa fa-trash"></i></a>
+                                    <form action="{{ route('data-rumah.destroy',$row->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    </form>
                                 </td>                          
                             </tr>
                             @endforeach

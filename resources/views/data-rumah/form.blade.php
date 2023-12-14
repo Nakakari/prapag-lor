@@ -108,7 +108,7 @@
                                 required="" id="rw">
                                 <option value=""> -- Pilih RW -- </option>
                                 @foreach(App\Models\DataRw::with('rts')->get() as $row)
-                                <option value="{{$row->name}}" data-rt="{{$row->rts}}" {{$data ? ($data->rw == $row ? 'selected':''):''}}>00{{$row->name}}</option>
+                                <option value="{{$row->name}}" data-rt="{{$row->rts}}" {{$data ? ($data->rw == $row->name ? 'selected':''):''}}>00{{$row->name}}</option>
                                 @endforeach
                             </select>                            
                         </div>
@@ -283,6 +283,19 @@ $(document).ready(function(){
         })
         
     })
+
+    @if ($data)
+        let rts = $('#rw').find('option:selected').data('rt')
+        $.each(rts, function(index,val){
+            $('#rt').append(`<option value="${val.name}" data-ketua-rt="${val.ketua_rt}" ${'{{$data->rt}}' == val.name ? 'selected':''}>00${val.name}</option>`)
+        })
+        $('#rt').prop('disabled',false)
+
+        $('#rt').select2({
+            allowClear: true,
+            placeholder: '-- Pilih RT --',
+        })
+    @endif
 
 
     function setKetuaRt(){

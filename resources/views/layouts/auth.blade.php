@@ -18,8 +18,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center text-white">
-                        <strong>{{env('APP_NAME')}} By Black Dev &copy;</strong>
-                        <img src="{{asset('icon.png')}}" width="30px">
+                        <strong>{{env('APP_NAME')}} Pemdes Prapag Lor &copy;</strong>
                     </div>
                 </div>
             </div>

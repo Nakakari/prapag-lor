@@ -21,18 +21,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::group(['middleware'=>'auth'],function(){
-    
+Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     /* KETUA RT */
     Route::resource('/ketua-rt', KetuaRtController::class);
 
     /* DATA RUMAH */
+    Route::get('/data-rumah/rekap', [DataRumahController::class, 'rekap'])->name('data-rumah.rekap');
     Route::resource('/data-rumah', DataRumahController::class);
 
     /* USER */
-    Route::get('user/check',[UserController::class, 'check'])->name('user.check');
-    Route::get('user/profile',[UserController::class, 'profile'])->name('user.profile');
+    Route::get('user/check', [UserController::class, 'check'])->name('user.check');
+    Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::resource('user', UserController::class);
 });

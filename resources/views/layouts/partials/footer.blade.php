@@ -1,8 +1,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>{{env('APP_NAME')}} By Black Dev &copy;</span>
-            <img src="{{asset('icon.png')}}" width="25px" class="mr-2">
+            <span>{{env('APP_NAME')}&copy;</span>
         </div>
     </div>
 </footer>
