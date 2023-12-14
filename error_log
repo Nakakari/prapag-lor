@@ -1,0 +1,1 @@
+[06-Dec-2023 05:51:23 Asia/Jakarta] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 7.4.33. in /home1/umrohpa1/simdes-prapag/vendor/composer/platform_check.php on line 24
