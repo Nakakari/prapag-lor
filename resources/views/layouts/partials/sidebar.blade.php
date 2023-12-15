@@ -72,7 +72,7 @@
         <li class="nav-item">
         <a class="nav-link" href="#">
         <i class="fas fa-fw fa-users"></i>
-        <span>Data Pemabangunan</span>
+        <span>Data Pembangunan</span>
          </a>
     </li>
      @endif
