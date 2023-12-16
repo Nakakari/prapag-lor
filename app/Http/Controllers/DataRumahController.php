@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\GambarAction;
 use App\Models\DataRumah;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
@@ -42,7 +43,13 @@ class DataRumahController extends Controller
     public function store(Request $request)
     {
         if ($request->has('file')) {
-            $file = $this->file_upload($request->file, 'uploads/data-rumah', time() . '-data-rumah-' . $request->kepala_keluarga . '.' . $request->file->getClientOriginalExtension());
+            // dd($request->file);
+            $declare_path = 'uploads/data-rumah/';
+            $nameOfFile = time() . '-data-rumah-' . $request->kepala_keluarga . '.';
+
+            $file = (new GambarAction())->save($request->file, $request->file, $declare_path, $nameOfFile);
+            // dd($file);
+            // $file = $this->file_upload($request->file, 'uploads/data-rumah', time() . '-data-rumah-' . $request->kepala_keluarga . '.' . $request->file->getClientOriginalExtension());
             $request->merge(['foto_rumah' => $file]);
         }
 
