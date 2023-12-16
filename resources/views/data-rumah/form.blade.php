@@ -51,7 +51,8 @@
                                     <option value=""></option>
                                     @foreach (App\Models\DataRumah::JenisAtap() as $row)
                                         <option value="{{ $row }}"
-                                            {{ $data ? ($data->jenis_atap == $row ? 'selected' : '') : '' }}>{{ ucwords($row) }}
+                                            {{ $data ? ($data->jenis_atap == $row ? 'selected' : '') : '' }}>
+                                            {{ ucwords($row) }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -188,7 +189,8 @@
                                     <option value="sumur_bor"
                                         {{ $data ? ($data->air_bersih == 'sumur_bor' ? 'selected' : '') : '' }}>Sumur Bor
                                     </option>
-                                    <option value="pam" {{ $data ? ($data->air_bersih == 'pam' ? 'selected' : '') : '' }}>
+                                    <option value="pam"
+                                        {{ $data ? ($data->air_bersih == 'pam' ? 'selected' : '') : '' }}>
                                         PAM</option>
                                 </select>
                             </div>
@@ -273,7 +275,7 @@
                 $.each(rts, function(index, val) {
                     $('#rt').append(
                         `<option value="${val.name}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
-                        )
+                    )
                 })
 
                 $('#rt').prop('disabled', false)
@@ -290,7 +292,7 @@
                 $.each(rts, function(index, val) {
                     $('#rt').append(
                         `<option value="${val.name}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt }}' == val.name ? 'selected':''}>00${val.name}</option>`
-                        )
+                    )
                 })
                 $('#rt').prop('disabled', false)
 
