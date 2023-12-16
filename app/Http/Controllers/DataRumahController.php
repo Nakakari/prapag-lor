@@ -48,7 +48,7 @@ class DataRumahController extends Controller
             $nameOfFile = time() . '-data-rumah-' . $request->kepala_keluarga . '.';
 
             $file = (new GambarAction())->save($request->file, $request->file, $declare_path, $nameOfFile);
-            // dd($file);
+            dd($file);
             // $file = $this->file_upload($request->file, 'uploads/data-rumah', time() . '-data-rumah-' . $request->kepala_keluarga . '.' . $request->file->getClientOriginalExtension());
             $request->merge(['foto_rumah' => $file]);
         }
@@ -73,7 +73,7 @@ class DataRumahController extends Controller
 
         DataRumah::create($request->all());
 
-        return redirect()->route('data-rumah.index')->with('success-message', 'Data Rumah baru berhasil ditambahkan');
+        return redirect()->route('data-rumah-warga.index')->with('success-message', 'Data Rumah baru berhasil ditambahkan');
     }
 
     public function show($id)
@@ -118,7 +118,7 @@ class DataRumahController extends Controller
         }
 
         $data->update($request->all());
-        return redirect()->route('data-rumah.index')->with('success-message', 'Data Rumah berhasil diubah');
+        return redirect()->route('data-rumah-warga.index')->with('success-message', 'Data Rumah berhasil diubah');
     }
 
     public function destroy($id)
@@ -126,7 +126,7 @@ class DataRumahController extends Controller
         $data = DataRumah::findOrFail($id);
 
         $data->delete();
-        return redirect()->route('data-rumah.index')->with('success-message', 'Data Rumah berhasil dihapus');
+        return redirect()->route('data-rumah-warga.index')->with('success-message', 'Data Rumah berhasil dihapus');
     }
 
     public function check(Request $request)

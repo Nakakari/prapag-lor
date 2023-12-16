@@ -29,8 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/ketua-rt', KetuaRtController::class);
 
     /* DATA RUMAH */
-    Route::get('/data-rumah/rekap', [DataRumahController::class, 'rekap'])->name('data-rumah.rekap');
-    Route::resource('/data-rumah', DataRumahController::class);
+    Route::get('/data-rumah/rekap', [DataRumahController::class, 'rekap'])->name('data-rumah-warga.rekap');
+    Route::resource('/data-rumah-warga', DataRumahController::class);
 
     /* USER */
     Route::get('user/check', [UserController::class, 'check'])->name('user.check');
