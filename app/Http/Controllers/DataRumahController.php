@@ -48,7 +48,7 @@ class DataRumahController extends Controller
             $nameOfFile = time() . '-data-rumah-' . $request->kepala_keluarga . '.';
 
             $file = (new GambarAction())->save($request->file, $request->file, $declare_path, $nameOfFile);
-            dd($file);
+            // dd($file);
             // $file = $this->file_upload($request->file, 'uploads/data-rumah', time() . '-data-rumah-' . $request->kepala_keluarga . '.' . $request->file->getClientOriginalExtension());
             $request->merge(['foto_rumah' => $file]);
         }
@@ -95,7 +95,10 @@ class DataRumahController extends Controller
         $data = DataRumah::findOrFail($id);
 
         if ($request->has('file')) {
-            $file = $this->file_upload($request->file, 'uploads/data-rumah', time() . '-data-rumah-' . $request->kepala_keluarga . '.' . $request->file->getClientOriginalExtension());
+            $declare_path = 'uploads/data-rumah/';
+            $nameOfFile = time() . '-data-rumah-' . $request->kepala_keluarga . '.';
+
+            $file = (new GambarAction())->save($data->foto_rumah, $request->file, $declare_path, $nameOfFile);
             $request->merge(['foto_rumah' => $file]);
         }
 
