@@ -89,7 +89,7 @@
         <li class="nav-item {{ active('user.index') }}">
             <a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fas fa-fw fa-user-friends"></i>
-                <span>User</span>
+                <span>Tambah User</span>
             </a>
         </li>
     @endif
