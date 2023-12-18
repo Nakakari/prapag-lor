@@ -65,7 +65,7 @@
             <span>Data Penduduk</span>
         </a>
     </li>
-    @if (auth()->user()->role == 'admin')
+    @if (auth()->user()->role == 'admin' || auth()->user()->username == 'tolib')
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-users"></i>
