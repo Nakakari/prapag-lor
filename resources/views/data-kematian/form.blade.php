@@ -341,7 +341,7 @@
 
             $.each(rts, function(index, val) {
                 $('#rt').append(
-                    `<option value="${val.name}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
+                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
                 )
             })
 
@@ -358,7 +358,7 @@
             let rts = $('#rw').find('option:selected').data('rt')
             $.each(rts, function(index, val) {
                 $('#rt').append(
-                    `<option value="${val.name}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.name ? 'selected':''}>00${val.name}</option>`
+                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.name ? 'selected':''}>00${val.name}</option>`
                 )
             })
             $('#rt').prop('disabled', false)
