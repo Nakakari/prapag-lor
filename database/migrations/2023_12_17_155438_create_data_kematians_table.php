@@ -32,8 +32,8 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->date('tanggal_pemakaman');
             $table->text('alamat');
-            $table->foreignId('rt_id')->references('id')->on('data_rts');
             $table->foreignId('rw_id')->references('id')->on('data_rws');
+            $table->foreignId('rt_id')->references('id')->on('data_rts');
             $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->foreignId('updated_by')->nullable()->references('id')->on('users');
             $table->timestamps();
