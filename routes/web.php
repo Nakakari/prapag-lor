@@ -47,5 +47,5 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('upload', 'uploadForm')->name('data-kematian.upload-form');
         Route::post('upload', 'upload')->name('data-kematian.upload');
     });
-    Route::resource('/data-kematian', DataKematianController::class);
+    Route::resource('data-kematian', DataKematianController::class);
 });

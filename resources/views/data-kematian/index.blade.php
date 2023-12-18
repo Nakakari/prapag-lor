@@ -141,7 +141,11 @@
                                                 class="btn btn-info btn-sm print-surat-kematian"><i
                                                     class="fa fa-print"></i>Cetak</a>
                                             <a href="{{ route('data-kematian.destroy', $row->id) }}"
-                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                class="btn btn-danger btn-sm delete-data"><i class="fa fa-trash"></i></a>
+                                            <form action="{{ route('data-kematian.destroy', $row->id) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                            </form>
 
                                         </td>
                                     @endif
@@ -281,6 +285,13 @@
                 placeholder: '-- Pilih RT --',
             })
 
+            $(document).on('click', '.delete-data', function(e) {
+                e.preventDefault();
+                let accept = confirm('Anda yakin hapus data ini?');
+                if (accept) {
+                    $(this).parent().find('form').submit();
+                }
+            });
 
             $(document).on('click', '.print-excel', function(e) {
                 e.preventDefault();

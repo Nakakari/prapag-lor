@@ -11,6 +11,7 @@ use App\Models\DataRw;
 use App\Models\Setting\JenisKelamin;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class DataKematianController extends Controller
 {
