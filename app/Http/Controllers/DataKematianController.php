@@ -97,7 +97,7 @@ class DataKematianController extends Controller
         $signature = collect(DataKematian::listPejabat());
         $data['signature'] = $signature->where('name', $request->signature)->first();
 
-        $data['data'] = DataKematian::whereYear('tahun', $data['year'])
+        $data['data'] = DataKematian::where('tahun', $data['year'])
             ->whereMonth('tanggal_pemakaman', '>=', $data['start_month'])
             ->whereMonth('tanggal_pemakaman', '<=', $data['end_month'])
             ->orderBy('tanggal_pemakaman', 'DESC')
@@ -129,7 +129,7 @@ class DataKematianController extends Controller
         $data['signature'] = $signature->where('name', $request->signature)->first();
 
 
-        $data['data'] = DataKematian::whereYear('tahun', $data['year'])
+        $data['data'] = DataKematian::where('tahun', $data['year'])
             ->whereMonth('tanggal_pemakaman', '>=', $data['start_month'])
             ->whereMonth('tanggal_pemakaman', '<=', $data['end_month'])
             ->orderBy('tanggal_pemakaman', 'DESC')
