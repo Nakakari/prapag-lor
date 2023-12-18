@@ -66,14 +66,14 @@
         </a>
     </li>
     @if (auth()->user()->role == 'admin')
-     <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Data Balita</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('data-kematian.index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Data Kematian</span>
             </a>

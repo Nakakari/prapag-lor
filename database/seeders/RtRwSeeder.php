@@ -16,25 +16,23 @@ class RtRwSeeder extends Seeder
      */
     public function run()
     {
-        DataRw::truncate();
-        DataRt::truncate();
+        // DataRw::truncate();
+        // DataRt::truncate();
 
-        $data_rws = [1,2,3];
-        $data_rts = [1,2,3,4,5,6,7,8];
+        $data_rws = [1, 2, 3];
+        $data_rts = [1, 2, 3, 4, 5, 6, 7, 8];
 
-        foreach($data_rws as $row)
-        {
+        foreach ($data_rws as $row) {
             $rw = DataRw::create([
-                'name'=>$row
+                'name' => $row
             ]);
 
-            foreach($data_rts as $rt){
-                if($rt == 8 AND $row == 2){
-
-                }else{
+            foreach ($data_rts as $rt) {
+                if ($rt == 8 and $row == 2) {
+                } else {
                     DataRt::create([
-                        'rw_id'=>$rw->id,
-                        'name'=> $rt
+                        'rw_id' => $rw->id,
+                        'name' => $rt
                     ]);
                 }
             }
