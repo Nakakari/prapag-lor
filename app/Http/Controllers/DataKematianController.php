@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Exports\DataKematianExport;
 use App\Helpers\AplikasiHelper;
 use App\Helpers\BulanHelper;
+use App\Http\Requests\DataKematianRequest;
 use App\Imports\DataKematianImport;
 use App\Models\DataKematian;
 use App\Models\DataRw;
 use App\Models\Setting\JenisKelamin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Throwable;
 
 class DataKematianController extends Controller
 {
@@ -37,10 +40,18 @@ class DataKematianController extends Controller
         return view('data-kematian.form', $data);
     }
 
-    public function store(Request $request)
+    public function store(DataKematianRequest $request)
     {
-        DataKematian::create($request->all());
-        return redirect()->route('data-kematian.index')->with('success-message',  'Berhasil Tambah Data');
+        try {
+            $form = array_merge($request->validated(), ['created_by' => Auth::user()->id]);
+            DataKematian::create($form);
+            $status = 'success-message';
+            $message = 'Berhasil Tambah Data';
+        } catch (Throwable $e) {
+            $status = 'error-message';
+            $message = 'Galat. Data Gagal Disimpan.';
+        }
+        return redirect()->route('data-kematian.index')->with($status, $message);
     }
 
     public function edit($id)
@@ -54,14 +65,22 @@ class DataKematianController extends Controller
         return view('data-kematian.form', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(DataKematianRequest $request, $id)
     {
-        $data = DataKematian::findOrFail($id);
-        $request->merge([
-            'tanggal_lahir' => ($request->tanggal_lahir ? $request->tanggal_lahir : $data->tanggal_lahir)
-        ]);
-        $data->update($request->all());
-        return redirect()->route('data-kematian.index')->with('success-message', 'Berhasil Ubah Data');
+        try {
+            $data = DataKematian::findOrFail($id);
+            $form = array_merge($request->validated(), [
+                'updated_by' => Auth::user()->id,
+                'tanggal_lahir' => ($request->tanggal_lahir ? $request->tanggal_lahir : $data->tanggal_lahir)
+            ]);
+            $data->update($form);
+            $status = 'success-message';
+            $message = 'Berhasil Update Data';
+        } catch (Throwable $e) {
+            $status = 'error-message';
+            $message = 'Galat. Data Gagal Disimpan.';
+        }
+        return redirect()->route('data-kematian.index')->with($status, $message);
     }
 
     public function destroy($id)

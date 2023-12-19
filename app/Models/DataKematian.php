@@ -13,7 +13,7 @@ class DataKematian extends Model
     protected $fillable = [
         'tahun', 'nik', 'nama', 'jenis_kelamin_id', 'nama_ayah', 'nama_ibu', 'tempat_tanggal_meninggal',
         'tanggal_pemakaman', 'nama_pelapor', 'nik_pelapor', 'nik_pelapor_2', 'nama_pelapor_2', 'nama_keluarga',
-        'tanggal_lahir', 'alamat', 'rt_id', 'rw_id', 'penyebab_kematian', 'keterangan'
+        'tanggal_lahir', 'alamat', 'rt_id', 'rw_id', 'penyebab_kematian', 'keterangan', 'created_by', 'updated_by'
     ];
     protected $dates = ['tanggal_pemakaman', 'tanggal_lahir'];
 

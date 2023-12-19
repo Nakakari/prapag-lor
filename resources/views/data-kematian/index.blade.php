@@ -37,16 +37,6 @@
                 </div>
 
                 <div class="card-body table-responsive">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('fail'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('fail') }}
-                        </div>
-                    @endif
 
                     <form action="{{ route('data-kematian.index') }}" method="GET">
                         <div class="row">

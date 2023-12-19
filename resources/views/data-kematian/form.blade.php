@@ -110,14 +110,20 @@
                                             00{{ $row->name }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('rw_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('rw_id') }}</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="rt">RT</label>
-                                <select name="rt_id" class="form-control" disabled="" id="rt">
+                                <select name="rt_id" class="form-control" disabled="" id="rt" required>
                                     <option value=""> -- Pilih RT -- </option>
                                 </select>
+                                @if ($errors->has('rt_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('rt_id') }}</div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-3">
