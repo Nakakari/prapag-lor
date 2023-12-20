@@ -56,8 +56,8 @@ use Carbon\Carbon;
                                 <label for="tanggal_lahir">Tanggal Lahir</label>
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_lahir')) is-invalid @endif "
-                                    name="tanggal_lahir"
-                                    value="{{ old('tanggal_lahir', $data ? $data->tanggal_lahir : '') }}" />
+                                    name="tanggal_lahir" data-date-format="dd/mm/yyyy"
+                                    value="{{ old('tanggal_lahir', $data ? Carbon::createFromFormat('Y-m-d H:i:s', $data->tanggal_lahir)->format('d/m/Y') : '') }}" />
                                 @if ($errors->has('tanggal_lahir'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_lahir') }}</div>
                                 @endif
@@ -138,8 +138,8 @@ use Carbon\Carbon;
                                 <label for="tanggal_pemakaman">Tanggal Pemakaman</label>
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_pemakaman')) is-invalid @endif "
-                                    name="tanggal_pemakaman"
-                                    value="{{ old('tanggal_pemakaman', $data ? $data->tanggal_pemakaman : '') }}" />
+                                    name="tanggal_pemakaman" data-date-format="dd/mm/yyyy"
+                                    value="{{ old('tanggal_pemakaman', $data ? Carbon::createFromFormat('Y-m-d H:i:s', $data->tanggal_pemakaman)->format('d/m/Y') : '') }}" />
                                 @if ($errors->has('tanggal_pemakaman'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_pemakaman') }}</div>
                                 @endif
