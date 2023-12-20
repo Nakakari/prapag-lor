@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Data Kematian')
-
+<?php
+use Carbon\Carbon;
+?>
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -17,16 +19,6 @@
                 </div>
 
                 <div class="card-body table-responsive">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('fail'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('fail') }}
-                        </div>
-                    @endif
                     @if ($data)
                         {!! Form::open()->route('data-kematian.update', [$data->id])->put()->fill($data)->id('form')->multipart() !!}
                     @else
@@ -65,7 +57,7 @@
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_lahir')) is-invalid @endif "
                                     name="tanggal_lahir"
-                                    value="{{ old('tanggal_lahir', $data ? $data->tanggal_lahir : '') }}" />
+                                    value="{{ old('tanggal_lahir', $data ? Carbon::createFromFormat('Y-m-d', $data->tanggal_lahir)->format('d/m/Y') : '') }}" />
                                 @if ($errors->has('tanggal_lahir'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_lahir') }}</div>
                                 @endif
@@ -91,8 +83,8 @@
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>
                                 <input type="text"
-                                    class="form-control @if ($errors->has('alamat')) is-invalid @endif "
-                                    name="alamat" value="{{ old('alamat', $data ? $data->alamat : '') }}" />
+                                    class="form-control @if ($errors->has('alamat')) is-invalid @endif " name="alamat"
+                                    value="{{ old('alamat', $data ? $data->alamat : '') }}" />
                                 @if ($errors->has('alamat'))
                                     <div class="invalid-feedback">{{ $errors->first('alamat') }}</div>
                                 @endif
@@ -147,7 +139,7 @@
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_pemakaman')) is-invalid @endif "
                                     name="tanggal_pemakaman"
-                                    value="{{ old('tanggal_pemakaman', $data ? $data->tanggal_pemakaman : '') }}" />
+                                    value="{{ old('tanggal_pemakaman', $data ? Carbon::createFromFormat('Y-m-d', $data->tanggal_pemakaman)->format('d/m/Y') : '') }}" />
                                 @if ($errors->has('tanggal_pemakaman'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_pemakaman') }}</div>
                                 @endif
@@ -364,7 +356,7 @@
             let rts = $('#rw').find('option:selected').data('rt')
             $.each(rts, function(index, val) {
                 $('#rt').append(
-                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.name ? 'selected':''}>00${val.name}</option>`
+                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.ID ? 'selected':''}>00${val.name}</option>`
                 )
             })
             $('#rt').prop('disabled', false)
