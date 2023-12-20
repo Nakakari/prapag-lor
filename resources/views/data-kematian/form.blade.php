@@ -56,7 +56,8 @@ use Carbon\Carbon;
                                 <label for="tanggal_lahir">Tanggal Lahir</label>
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_lahir')) is-invalid @endif "
-                                    name="tanggal_lahir" value="{{ old('tanggal_lahir', $data ? '01/02/2003' : '') }}" />
+                                    name="tanggal_lahir"
+                                    value="{{ old('tanggal_lahir', $data ? $data->tanggal_lahir : '') }}" />
                                 @if ($errors->has('tanggal_lahir'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_lahir') }}</div>
                                 @endif
@@ -138,7 +139,7 @@ use Carbon\Carbon;
                                 <input type="date"
                                     class="form-control @if ($errors->has('tanggal_pemakaman')) is-invalid @endif "
                                     name="tanggal_pemakaman"
-                                    value="{{ old('tanggal_pemakaman', $data ? '01/01/2001' : '') }}" />
+                                    value="{{ old('tanggal_pemakaman', $data ? $data->tanggal_pemakaman : '') }}" />
                                 @if ($errors->has('tanggal_pemakaman'))
                                     <div class="invalid-feedback">{{ $errors->first('tanggal_pemakaman') }}</div>
                                 @endif
@@ -355,7 +356,7 @@ use Carbon\Carbon;
             let rts = $('#rw').find('option:selected').data('rt')
             $.each(rts, function(index, val) {
                 $('#rt').append(
-                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.ID ? 'selected':''}>00${val.name}</option>`
+                    `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}" ${'{{ $data->rt_id }}' == val.id ? 'selected':''}>00${val.name}</option>`
                 )
             })
             $('#rt').prop('disabled', false)
