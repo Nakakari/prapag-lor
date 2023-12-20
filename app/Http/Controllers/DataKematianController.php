@@ -42,15 +42,15 @@ class DataKematianController extends Controller
 
     public function store(DataKematianRequest $request)
     {
-        try {
-            $form = array_merge($request->validated(), ['created_by' => Auth::user()->id]);
-            DataKematian::create($form);
-            $status = 'success-message';
-            $message = 'Berhasil Tambah Data';
-        } catch (Throwable $e) {
-            $status = 'error-message';
-            $message = 'Galat. Data Gagal Disimpan.';
-        }
+        // try {
+        $form = array_merge($request->validated(), ['created_by' => Auth::user()->id]);
+        DataKematian::create($form);
+        $status = 'success-message';
+        $message = 'Berhasil Tambah Data';
+        // } catch (Throwable $e) {
+        //     $status = 'error-message';
+        //     $message = 'Galat. Data Gagal Disimpan.';
+        // }
         return redirect()->route('data-kematian.index')->with($status, $message);
     }
 
