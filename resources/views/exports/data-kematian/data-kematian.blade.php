@@ -29,7 +29,7 @@
         @forelse ($data['data'] as $row)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $row->nik }}</td>
+                <td>&nbsp;{{ $row->nik }}</td>
                 <td>{{ $row->nama }}</td>
                 <td>{{ $row->tanggal_lahir }}</td>
                 <td>{{ $row->alamat }}</td>
@@ -37,8 +37,8 @@
                 <td>00{{ $row->rw->name }}</td>
                 <td>{{ $row->keterangan }}</td>
                 <td>{{ $row->tempat_tanggal_meninggal }}</td>
-                <td>{{ $row->nik_pelapor }}</td>
-                <td>{{ $row->nik_pelapor_2 }}</td>
+                <td>&nbsp;{{ $row->nik_pelapor }}</td>
+                <td>&nbsp;{{ $row->nik_pelapor_2 }}</td>
             </tr>
         @empty
             <tr>

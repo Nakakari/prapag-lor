@@ -10,7 +10,7 @@ use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
-class DataKematianExport extends DefaultValueBinder implements ShouldAutoSize, FromView
+class DataKematianExport extends DefaultValueBinder implements ShouldAutoSize, FromView, WithColumnFormatting
 {
     protected $data;
     public function __construct($data)
@@ -19,6 +19,10 @@ class DataKematianExport extends DefaultValueBinder implements ShouldAutoSize, F
         $this->data = $data;
     }
 
+    public function columnFormats(): array
+    {
+        return [];
+    }
     public function view(): View
     {
         return view('exports.data-kematian.data-kematian', [
