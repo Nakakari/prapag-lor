@@ -54,7 +54,7 @@
             <td colspan="9" style="text-align: center;"></td>
             <td style="text-align: center;">
                 {{ strtoupper($data['desa']) }},
-                {{ date('d F Y') }}
+                {{ strtoupper(date('d F Y')) }}
             </td>
             <td></td>
         </tr>
