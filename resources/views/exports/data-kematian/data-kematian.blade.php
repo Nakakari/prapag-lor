@@ -1,3 +1,4 @@
+<?php use Carbon\Carbon; ?>
 <table>
     <thead>
         <tr>
@@ -31,12 +32,12 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>&nbsp;{{ $row->nik }}</td>
                 <td>{{ $row->nama }}</td>
-                <td>{{ $row->tanggal_lahir }}</td>
+                <td>{{ Carbon::createFromFormat('Y-m-d', $row->tanggal_lahir)->format('Y-m-d') }}</td>
                 <td>{{ $row->alamat }}</td>
                 <td>00{{ $row->rt->name }}</td>
                 <td>00{{ $row->rw->name }}</td>
                 <td>{{ $row->keterangan }}</td>
-                <td>{{ $row->tempat_tanggal_meninggal }}</td>
+                <td>{{ Carbon::createFromFormat('Y-m-d', $row->tanggal_pemakaman)->format('Y-m-d') }}</td>
                 <td>&nbsp;{{ $row->nik_pelapor }}</td>
                 <td>&nbsp;{{ $row->nik_pelapor_2 }}</td>
             </tr>
