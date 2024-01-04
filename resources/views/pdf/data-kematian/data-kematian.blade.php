@@ -38,7 +38,8 @@ use App\Helpers\AplikasiHelper;
                             <td>00{{ $row->rt->name }}</td>
                             <td>00{{ $row->rw->name }}</td>
                             <td>{{ $row->keterangan }}</td>
-                            <td>{{ $row->tempat_tanggal_meninggal }}</td>
+                            <td>{{ $row->tanggal_pemakaman == '1991-01-01' ? '-' : $row->tanggal_pemakaman->format('d-m-Y') }}
+                            </td>
                             <td>{{ $row->nik_pelapor }}</td>
                             <td>{{ $row->nik_pelapor_2 }}</td>
                         </tr>
