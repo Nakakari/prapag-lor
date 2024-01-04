@@ -117,13 +117,13 @@ class DataKematianController extends Controller
         $signature = collect(DataKematian::listPejabat());
         $data['signature'] = $signature->where('name', $request->signature)->first();
 
-        $data['data'] = DataKematian::where('tahun', $data['year'])
+        $data['data'] = DataKematian::select('*')->where('tahun', $data['year'])
             ->whereMonth('tanggal_pemakaman', '>=', $data['start_month'])
             ->whereMonth('tanggal_pemakaman', '<=', $data['end_month'])
             ->orderBy('tanggal_pemakaman', 'DESC')
             ->get();
-        // dd($data);
         $data['desa'] = AplikasiHelper::desa;
+        // dd($data);
         if ($data['data']->count()) {
             return Excel::download(new DataKematianExport($data), 'laporan-kematian-' . $data['excel_title'] . '.xlsx');
         }
@@ -155,6 +155,7 @@ class DataKematianController extends Controller
             ->whereMonth('tanggal_pemakaman', '<=', $data['end_month'])
             ->orderBy('tanggal_pemakaman', 'DESC')
             ->get();
+        $data['desa'] = AplikasiHelper::desa;
 
 
         if ($data['data']->count()) {

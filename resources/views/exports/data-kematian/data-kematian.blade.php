@@ -53,7 +53,8 @@
         <tr>
             <td colspan="9" style="text-align: center;"></td>
             <td style="text-align: center;">
-                Kedungneng, {{ date('d F Y') }}
+                {{ strtoupper($data['desa']) }},
+                {{ date('d F Y') }}
             </td>
             <td></td>
         </tr>
@@ -63,7 +64,7 @@
                 @if ($data['signature'])
                     {{ strtoupper($data['signature']['jabatan']) }}
                 @else
-                    KEPALA DESA {{ $data['desa'] }}
+                    KEPALA DESA {{ strtoupper($data['desa']) }}
                 @endif
             </td>
             <td></td>
