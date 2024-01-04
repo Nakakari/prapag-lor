@@ -35,7 +35,7 @@ class DataKematian extends Model
     public static function listPejabat()
     {
         $data = [
-            ['jabatan' => 'Perangkat Desa', 'name' => 'TOLIB'],
+            ['jabatan' => 'Kasie Pelayanan', 'name' => 'TOLIB'],
         ];
 
         return $data;

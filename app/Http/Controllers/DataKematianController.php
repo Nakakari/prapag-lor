@@ -123,6 +123,7 @@ class DataKematianController extends Controller
             ->orderBy('tanggal_pemakaman', 'DESC')
             ->get();
         // dd($data);
+        $data['desa'] = AplikasiHelper::desa;
         if ($data['data']->count()) {
             return Excel::download(new DataKematianExport($data), 'laporan-kematian-' . $data['excel_title'] . '.xlsx');
         }

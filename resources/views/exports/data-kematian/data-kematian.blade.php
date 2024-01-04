@@ -63,7 +63,7 @@
                 @if ($data['signature'])
                     {{ strtoupper($data['signature']['jabatan']) }}
                 @else
-                    KEPALA DESA KEDUNGNENG
+                    KEPALA DESA {{ $data['desa'] }}
                 @endif
             </td>
             <td></td>

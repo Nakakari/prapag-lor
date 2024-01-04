@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
 class DataKematianExport extends DefaultValueBinder implements ShouldAutoSize, FromView, WithColumnFormatting
 {
+    protected $data;
     public function __construct($data)
     {
 
@@ -27,11 +28,8 @@ class DataKematianExport extends DefaultValueBinder implements ShouldAutoSize, F
 
     public function view(): View
     {
-
         return view('exports.data-kematian.data-kematian', [
-
             'data' => $this->data,
-
         ]);
     }
 }
