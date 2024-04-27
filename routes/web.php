@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataKematianController;
 use App\Http\Controllers\DataRumahController;
 use App\Http\Controllers\KetuaRtController;
+use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\UserController;
 use App\Models\DataKematian;
 use Illuminate\Support\Facades\Auth;
@@ -48,4 +49,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('upload', 'upload')->name('data-kematian.upload');
     });
     Route::resource('data-kematian', DataKematianController::class);
+    /* PENDUDUK */
+    Route::controller(PendudukController::class)->prefix('penduduk')->group(function () {
+        Route::get('rekap', 'rekap')->name('penduduk.rekap');
+        Route::get('export-rekap', 'exportRekap')->name('penduduk.export-rekap');
+        Route::get('surat-tidak-manpu/{id}', 'suratTidakMampu')->name('penduduk.surat-tidak-mampu');
+        Route::get('export-monografi', 'exportMonografi')->name('penduduk.export-monografi');
+        Route::post('data-monografi', 'dataMonografi')->name('penduduk.data-monografi');
+    });
+    Route::resource('penduduk', PendudukController::class);
 });

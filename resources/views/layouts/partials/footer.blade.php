@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>{{env('APP_NAME')}&copy;</span>
+            <span>Prapag Lor &copy; {{ date('Y') }}</span>
         </div>
     </div>
 </footer>
@@ -23,7 +23,8 @@
             <div class="modal-body">Pilih button "Logout" untuk keluar aplikasi.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
+                <a class="btn btn-primary" href="#"
+                    onclick="document.getElementById('logout-form').submit()">Logout</a>
             </div>
         </div>
     </div>

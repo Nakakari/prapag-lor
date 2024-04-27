@@ -24,5 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(RtRwSeeder::class);
         $this->call(JenisKelaminSeeder::class);
+        $this->call([
+            JenisGolonganDarahSeeder::class,
+            JenisAgamaSeeder::class,
+            JenisPendidikanSeeder::class,
+            JenisStatusMaritalSeeder::class,
+            JenisMasterPekerjaanSeeder::class,
+        ]);
     }
 }

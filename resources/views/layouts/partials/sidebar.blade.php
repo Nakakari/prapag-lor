@@ -60,7 +60,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('penduduk.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Data Penduduk</span>
         </a>

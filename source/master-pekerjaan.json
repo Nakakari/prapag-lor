@@ -1,0 +1,618 @@
+﻿[
+    {
+        "id": "1",
+        "kode": "1",
+        "deskripsi": "Belum/ Tidak Bekerja",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "2",
+        "kode": "2",
+        "deskripsi": "Mengurus Rumah Tangga",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "3",
+        "kode": "3",
+        "deskripsi": "Pelajar/ Mahasiswa",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "4",
+        "kode": "4",
+        "deskripsi": "Pensiunan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "5",
+        "kode": "5",
+        "deskripsi": "Pegawai Negeri Sipil",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "6",
+        "kode": "6",
+        "deskripsi": "Tentara Nasional Indonesia",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "7",
+        "kode": "7",
+        "deskripsi": "Kepolisisan RI",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "8",
+        "kode": "8",
+        "deskripsi": "Perdagangan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "9",
+        "kode": "9",
+        "deskripsi": "Petani/ Pekebun",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "10",
+        "kode": "10",
+        "deskripsi": "Peternak",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "11",
+        "kode": "11",
+        "deskripsi": "Nelayan/ Perikanan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "12",
+        "kode": "12",
+        "deskripsi": "Industri",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "13",
+        "kode": "13",
+        "deskripsi": "Konstruksi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "14",
+        "kode": "14",
+        "deskripsi": "Transportasi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "15",
+        "kode": "15",
+        "deskripsi": "Karyawan Swasta",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "16",
+        "kode": "16",
+        "deskripsi": "Karyawan BUMN",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "17",
+        "kode": "17",
+        "deskripsi": "Karyawan BUMD",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "18",
+        "kode": "18",
+        "deskripsi": "Karyawan Honorer",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "19",
+        "kode": "19",
+        "deskripsi": "Buruh Harian Lepas",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "20",
+        "kode": "20",
+        "deskripsi": "Buruh Tani/ Perkebunan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "21",
+        "kode": "21",
+        "deskripsi": "Buruh Nelayan/ Perikanan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "22",
+        "kode": "22",
+        "deskripsi": "Buruh Peternakan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "23",
+        "kode": "23",
+        "deskripsi": "Pembantu Rumah Tangga",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "24",
+        "kode": "24",
+        "deskripsi": "Tukang Cukur",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "25",
+        "kode": "25",
+        "deskripsi": "Tukang Listrik",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "26",
+        "kode": "26",
+        "deskripsi": "Tukang Batu",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "27",
+        "kode": "27",
+        "deskripsi": "Tukang Kayu",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "28",
+        "kode": "28",
+        "deskripsi": "Tukang Sol Sepatu",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "29",
+        "kode": "29",
+        "deskripsi": "Tukang Las/ Pandai Besi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "30",
+        "kode": "30",
+        "deskripsi": "Tukang Jahit",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "31",
+        "kode": "31",
+        "deskripsi": "Tukang Gigi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "32",
+        "kode": "32",
+        "deskripsi": "Penata Rias",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "33",
+        "kode": "33",
+        "deskripsi": "Penata Busana",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "34",
+        "kode": "34",
+        "deskripsi": "Penata Rambut",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "35",
+        "kode": "35",
+        "deskripsi": "Mekanik",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "36",
+        "kode": "36",
+        "deskripsi": "Seniman",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "37",
+        "kode": "37",
+        "deskripsi": "Tabib",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "38",
+        "kode": "38",
+        "deskripsi": "Paraji",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "39",
+        "kode": "39",
+        "deskripsi": "Perancang Busana",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "40",
+        "kode": "40",
+        "deskripsi": "Penterjemah",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "41",
+        "kode": "41",
+        "deskripsi": "Imam Masjid",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "42",
+        "kode": "42",
+        "deskripsi": "Pendeta",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "43",
+        "kode": "43",
+        "deskripsi": "Pastor",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "44",
+        "kode": "44",
+        "deskripsi": "Wartawan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "45",
+        "kode": "45",
+        "deskripsi": "Ustadz/ Mubaligh",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "46",
+        "kode": "46",
+        "deskripsi": "Juru Masak",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "47",
+        "kode": "47",
+        "deskripsi": "Promotor Acara",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "48",
+        "kode": "48",
+        "deskripsi": "Anggota DPR-RI",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "49",
+        "kode": "49",
+        "deskripsi": "Anggota DPD",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "50",
+        "kode": "50",
+        "deskripsi": "Anggota BPK",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "51",
+        "kode": "51",
+        "deskripsi": "Presiden",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "52",
+        "kode": "52",
+        "deskripsi": "Wakil Presiden",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "53",
+        "kode": "53",
+        "deskripsi": "Anggota Mahkamah Konstitusi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "54",
+        "kode": "54",
+        "deskripsi": "Anggota Kabinet/ Kementerian",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "55",
+        "kode": "55",
+        "deskripsi": "Duta Besar",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "56",
+        "kode": "56",
+        "deskripsi": "Gubernur",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "57",
+        "kode": "57",
+        "deskripsi": "Wakil Gubernur",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "58",
+        "kode": "58",
+        "deskripsi": "Bupati",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "59",
+        "kode": "59",
+        "deskripsi": "Wakil Bupati",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "60",
+        "kode": "60",
+        "deskripsi": "Walikota",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "61",
+        "kode": "61",
+        "deskripsi": "Wakil Walikota",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "62",
+        "kode": "62",
+        "deskripsi": "Anggota DPRD Provinsi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "63",
+        "kode": "63",
+        "deskripsi": "Anggota DPRD Kabupaten/ Kota",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "64",
+        "kode": "64",
+        "deskripsi": "Dosen",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "65",
+        "kode": "65",
+        "deskripsi": "Guru",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "66",
+        "kode": "66",
+        "deskripsi": "Pilot",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "67",
+        "kode": "67",
+        "deskripsi": "Pengacara",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "68",
+        "kode": "68",
+        "deskripsi": "Notaris",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "69",
+        "kode": "69",
+        "deskripsi": "Arsitek",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "70",
+        "kode": "70",
+        "deskripsi": "Akuntan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "71",
+        "kode": "71",
+        "deskripsi": "Konsultan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "72",
+        "kode": "72",
+        "deskripsi": "Dokter",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "73",
+        "kode": "73",
+        "deskripsi": "Bidan",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "74",
+        "kode": "74",
+        "deskripsi": "Perawat",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "75",
+        "kode": "75",
+        "deskripsi": "Apoteker",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "76",
+        "kode": "76",
+        "deskripsi": "Psikiater/ Psikolog",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "77",
+        "kode": "77",
+        "deskripsi": "Penyiar Televisi",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "78",
+        "kode": "78",
+        "deskripsi": "Penyiar Radio",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "79",
+        "kode": "79",
+        "deskripsi": "Pelaut",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "80",
+        "kode": "80",
+        "deskripsi": "Peneliti",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "81",
+        "kode": "81",
+        "deskripsi": "Sopir",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "82",
+        "kode": "82",
+        "deskripsi": "Pialang",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "83",
+        "kode": "83",
+        "deskripsi": "Paranormal",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "84",
+        "kode": "84",
+        "deskripsi": "Pedagang",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "85",
+        "kode": "85",
+        "deskripsi": "Perangkat Desa",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "86",
+        "kode": "86",
+        "deskripsi": "Kepala Desa",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "87",
+        "kode": "87",
+        "deskripsi": "Biarawati",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    },
+    {
+        "id": "88",
+        "kode": "88",
+        "deskripsi": "Wiraswasta",
+        "created_at": "NULL",
+        "updated_at": "NULL"
+    }
+]
