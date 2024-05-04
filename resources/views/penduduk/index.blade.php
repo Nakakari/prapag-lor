@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow">
+            <div class="card shadow card border-bottom-primary">
                 <div class="card-header">
                     <div class="float-left">
                         <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
@@ -32,6 +32,8 @@
                                         <div class="col-lg-8">
                                             <input type="text" name="nik" id="nik"
                                                 class="form-control form-control-sm"
+                                                onkeypress="return numbersonly(this, event);" maxlength="16"
+                                                placeholder="NIK"
                                                 value="{{ request()->get('nik') != null ? request()->get('nik') : '' }}">
                                         </div>
                                     </div>
@@ -42,6 +44,8 @@
                                         <div class="col-lg-8">
                                             <input type="text" name="no_kk" id="no_kk"
                                                 class="form-control form-control-sm"
+                                                onkeypress="return numbersonly(this, event);" maxlength="16"
+                                                placeholder="No. KK"
                                                 value="{{ request()->get('no_kk') != null ? request()->get('no_kk') : '' }}">
                                         </div>
                                     </div>
@@ -266,10 +270,9 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($data as $row)
                                 <tr>
-                                    <td style="white-space: nowrap;">{{ $loop->iteration }}</td>
+                                    <td style="white-space: nowrap; text-align:center;">{{ $loop->iteration }}</td>
                                     <td style="white-space: nowrap;">
                                         <span>
                                             {{ $row->nik }}
@@ -335,10 +338,10 @@
                                     </td>
 
                                     <td style="white-space: nowrap;">
-                                        <a href="{{ route('penduduk.surat-tidak-mampu', $row->id) }}"
-                                            class="btn btn-info btn-sm sign-button" title="CetaK Biodata"><i
-                                                class="fa fa-print"></i></a>
-                                        <a href="{{ route('penduduk.edit', $row->id) }}"
+                                        {{-- <a href="{{ route('penduduk.surat-tidak-mampu', $row->uuid) }}"
+                                            class="btn btn-info btn-sm sign-button" title="CetaK Surat Kematian"><i
+                                                class="fa fa-print"></i></a> --}}
+                                        <a href="{{ route('penduduk.edit', $row->uuid) }}"
                                             class="btn btn-success btn-sm"><i class="fa fa-pen"></i></a>
                                         <a href="#" class="btn btn-danger btn-sm delete-data"><i
                                                 class="fa fa-trash"></i></a>
@@ -396,7 +399,7 @@
             </div>
         </div>
     </div>
-    {{-- @include('penduduk.modal.monografi') --}}
+    @include('penduduk.modal.monografi')
 @endsection
 @include('plugins.select2')
 @include('plugins.datatables')
@@ -479,35 +482,35 @@
             })
 
             /* RW */
-            $('#rw').select2({
+            $('#rw, #filter-rw').select2({
                 allowClear: true,
                 placeholder: '-- Pilih RW --'
             })
 
-            $('#rt').select2({
+            $('#rt, #filter-rt').select2({
                 allowClear: true,
                 placeholder: '-- Pilih RT --'
             })
 
-            $(document).on('change', '#rt', function(e) {
+            $(document).on('change', '#rt, #filter-rt', function(e) {
                 e.preventDefault();
             })
 
-            $(document).on('change', '#rw', function(e) {
+            $(document).on('change', '#rw, #filter-rw', function(e) {
                 e.preventDefault();
-                $('#rt').empty();
-                $('#rt').append(`<option value=""></option>`)
+                $('#rt,#filter-rt').empty();
+                $('#rt,#filter-rt').append(`<option value=""></option>`)
                 let rts = $(this).find(':selected').data('rt')
 
                 $.each(rts, function(index, val) {
-                    $('#rt').append(
+                    $('#rt, #filter-rt').append(
                         `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
                     )
                 })
 
-                $('#rt').prop('disabled', false)
+                $('#rt, #filter-rt').prop('disabled', false)
 
-                $('#rt').select2({
+                $('#rt, #filter-rt').select2({
                     allowClear: true,
                     placeholder: '-- Pilih RT --',
                 })

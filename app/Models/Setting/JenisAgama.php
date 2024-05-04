@@ -9,4 +9,20 @@ class JenisAgama extends Model
 {
     use HasFactory;
     protected $table = 'jenis_agamas';
+
+    public function listAgama()
+    {
+        $agamas = $this->all();
+        $datas = [];
+        foreach ($agamas as $agama) {
+            array_push(
+                $datas,
+                [
+                    'id' => $agama->id,
+                    'nama' => $agama->nama
+                ]
+            );
+        }
+        return $datas;
+    }
 }

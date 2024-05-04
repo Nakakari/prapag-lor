@@ -30,4 +30,17 @@ class DataRt extends Model
     {
         return $this->belongsTo(DataRw::class, 'rw_id', 'id');
     }
+
+    public function listData()
+    {
+        $all = DataRt::select('name')->groupBy('rw_id', 'name')->get();
+        $datas = [];
+        foreach ($all as $a) {
+            array_push(
+                $datas,
+                $a->name
+            );
+        }
+        return $datas;
+    }
 }

@@ -2,10 +2,11 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow">
+            <div class="card shadow border-bottom-primary">
                 <div class="card-header">
                     <div class="float-left">
-                        <h6 class="d-inline">Data Monografi Penduduk Berdasarkan {{ $data['data']['berdasarkan']['judul'] }}
+                        <h6 class="d-inline text-primary">Data Monografi Penduduk Berdasarkan
+                            {{ $data['data']['berdasarkan']['judul'] }}
                         </h6>
                     </div>
                     <div class="float-right">
@@ -39,7 +40,7 @@
                                     <th rowspan="2">NO</th>
                                     <th rowspan="2">NO RT</th>
                                     @foreach ($data['data']['berdasarkan']['list'] as $key => $row)
-                                        <th colspan="3">{{ ucwords($row) }}</th>
+                                        <th colspan="3">{{ ucwords($row['nama']) }}</th>
                                     @endforeach
                                     <th colspan="3">JUMLAH</th>
                                 </tr>
@@ -57,9 +58,9 @@
                                         <td class="text-center">{{ $keyrt }}</td>
                                         <td>RT.00{{ $keyrt }}</td>
                                         @foreach ($data['data']['berdasarkan']['list'] as $keyag => $ag)
-                                            <td>{{ count($rt['L'][$ag]) }}</td>
-                                            <td>{{ count($rt['P'][$ag]) }}</td>
-                                            <td>{{ count($rt['L'][$ag]) + count($rt['P'][$ag]) }}</td>
+                                            <td>{{ count($rt['L'][$ag['nama']]) }}</td>
+                                            <td>{{ count($rt['P'][$ag['nama']]) }}</td>
+                                            <td>{{ count($rt['L'][$ag['nama']]) + count($rt['P'][$ag['nama']]) }}</td>
                                         @endforeach
                                         <td class="text-right">{{ $rt['tlaki'] }}</td>
                                         <td class="text-right">{{ $rt['tperem'] }}</td>
@@ -71,9 +72,9 @@
                                 <tr>
                                     <td class="text-center" colspan="2">Jumlah RW : 00{{ $keyrw }}</td>
                                     @foreach ($data['data']['berdasarkan']['list'] as $keyag => $ag)
-                                        <td>{{ $rw[$ag]['tlaki'] }}</td>
-                                        <td>{{ $rw[$ag]['tperem'] }}</td>
-                                        <td>{{ $rw[$ag]['tlaki'] + $rw[$ag]['tperem'] }}</td>
+                                        <td>{{ $rw[$ag['nama']]['tlaki'] }}</td>
+                                        <td>{{ $rw[$ag['nama']]['tperem'] }}</td>
+                                        <td>{{ $rw[$ag['nama']]['tlaki'] + $rw[$ag['nama']]['tperem'] }}</td>
                                     @endforeach
                                     <td class="text-right">{{ $rw['tlaki'] }}</td>
                                     <td class="text-right">{{ $rw['tperem'] }}</td>
@@ -88,7 +89,7 @@
                                 <th rowspan="2" class="bordered">NO</th>
                                 <th rowspan="2" class="bordered">NO RT</th>
                                 @foreach ($data['data']['berdasarkan']['list'] as $key => $row)
-                                    <th colspan="3" class="bordered">{{ ucwords($row) }}</th>
+                                    <th colspan="3" class="bordered">{{ ucwords($row['nama']) }}</th>
                                 @endforeach
                                 <th colspan="3" class="bordered">JUMLAH</th>
                             </tr>
@@ -101,7 +102,7 @@
                             </tr>
                             <tr>
                                 <th class="text-center bordered" colspan="2">JUMLAH TOTAL</th>
-                                @foreach ($data['data']['berdasarkan']['list'] as $keyag => $ag)
+                                {{-- @foreach ($data['data']['berdasarkan']['list'] as $keyag => $ag)
                                     <th class="text-right">
                                         {{ $data['data'][$ag]['tslaki'] > 0 ? $data['data'][$ag]['tslaki'] : '' }}</th>
                                     <th class="text-right">
@@ -109,10 +110,13 @@
                                     <th class="text-right">
                                         {{ $data['data'][$ag]['tslaki'] + $data['data'][$ag]['tsperem'] > 0 ? $data['data'][$ag]['tslaki'] + $data['data'][$ag]['tsperem'] : '' }}
                                     </th>
-                                @endforeach
-                                <th class="text-right">{{ $data['data']['tslaki'] }}</th>
-                                <th class="text-right">{{ $data['data']['tsperem'] }}</th>
-                                <th class="text-right">{{ $data['data']['tslaki'] + $data['data']['tsperem'] }}</th>
+                                @endforeach --}}
+                                <th class="text-right" colspan="{{ count($data['data']['berdasarkan']['list']) / 3 }}">
+                                    {{ $data['data']['tslaki'] }}</th>
+                                <th class="text-right" colspan="{{ count($data['data']['berdasarkan']['list']) / 3 }}">
+                                    {{ $data['data']['tsperem'] }}</th>
+                                <th class="text-right" colspan="{{ count($data['data']['berdasarkan']['list']) / 3 }}">
+                                    {{ $data['data']['tslaki'] + $data['data']['tsperem'] }}</th>
                             </tr>
                         </thead>
                     </table>

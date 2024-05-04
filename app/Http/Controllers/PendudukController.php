@@ -2,18 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MonografiPendudukExport;
+use App\Helpers\AplikasiHelper;
 use App\Helpers\ClassMonografiPendudukHelper;
+use App\Helpers\FilterMonografiPendudukHelper;
+use App\Helpers\GetDataMonografiHelper;
 use App\Helpers\JenisKelaminHelper;
 use App\Models\DataRt;
 use App\Models\DataRw;
 use App\Models\Penduduk;
-use App\Models\Setting\JenisAgama;
-use App\Models\Setting\JenisGolonganDarah;
-use App\Models\Setting\JenisKelamin;
-use App\Models\Setting\JenisPekerjaan;
-use App\Models\Setting\JenisPendidikan;
+use App\Models\Setting\{
+    JenisAgama,
+    JenisGolonganDarah,
+    JenisKelamin,
+    JenisPekerjaan,
+    JenisPendidikan,
+    JenisStatusMarital,
+    JenisStatusRelation
+};
+use App\Services\PendudukService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
+use Throwable;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendudukController extends Controller
 {
@@ -114,6 +129,9 @@ class PendudukController extends Controller
         $jenisPekerjaan = JenisPekerjaan::all();
         $jenisPendidikan = JenisPendidikan::all();
         $jenisGolDar = JenisGolonganDarah::all();
+        $statusKawin = JenisStatusMarital::all();
+        $statusRelation = JenisStatusRelation::all();
+        $dataRwRt =  DataRw::with('rts')->get();
 
         return view('penduduk.form', compact([
             'data',
@@ -123,6 +141,151 @@ class PendudukController extends Controller
             'jenisPekerjaan',
             'jenisPendidikan',
             'jenisGolDar',
+            'statusKawin',
+            'statusRelation',
+            'dataRwRt',
         ]));
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            DB::transaction(function () use ($request) {
+                $form = array_merge($request->all(), [
+                    'uuid' => Uuid::uuid4()->toString(),
+                    'created_by' => Auth::user()->id,
+                    'kelurahan' => AplikasiHelper::desa,
+                    'is_penduduk' => true,
+                ]);
+                $check_nik = Penduduk::where('nik', $request->nik)
+                    ->first();
+
+                if ($check_nik) {
+                    return redirect()->back()->with('error-message', 'Data Sudah ada, NIK Sudah Digunakan');
+                }
+                $data = Penduduk::create($form);
+            });
+            return redirect()->route('penduduk.index')->with('success-message', 'Berhasil Tambah Data');
+        } catch (Throwable $e) {
+            report($e);
+            return redirect()->back()->with('error-message', $e->getMessage());
+        }
+    }
+
+    public function edit(string $uuid)
+    {
+        $data = Penduduk::where('uuid', $uuid)->firstOrFail();
+        $jenisAgama = JenisAgama::all();
+        $rw = DataRw::all();
+        $jenisKelamin = JenisKelamin::all();
+        $jenisPekerjaan = JenisPekerjaan::all();
+        $jenisPendidikan = JenisPendidikan::all();
+        $jenisGolDar = JenisGolonganDarah::all();
+        $statusKawin = JenisStatusMarital::all();
+        $statusRelation = JenisStatusRelation::all();
+        $dataRwRt =  DataRw::with('rts')->get();
+
+        return view('penduduk.form', compact(
+            'data',
+            'jenisAgama',
+            'rw',
+            'jenisKelamin',
+            'jenisPekerjaan',
+            'jenisPendidikan',
+            'jenisGolDar',
+            'statusKawin',
+            'statusRelation',
+            'dataRwRt',
+        ));
+    }
+
+    public function show($id)
+    {
+        $data = Penduduk::findOrFail($id);
+        return view('penduduk.show', compact(['data']));
+    }
+
+    public function update(string $uuid, Request $request)
+    {
+        try {
+            $data = Penduduk::where('uuid', $uuid)->firstOrFail();
+            $form = array_merge($request->all(), [
+                'updated_by' => Auth::user()->id,
+            ]);
+            $data->update($form);
+            return redirect()->route('penduduk.index')->with('success-message', 'Berhasil Ubah Data');
+        } catch (Throwable $e) {
+            return redirect()->back()->with('error-message', $e->getMessage());
+        }
+    }
+
+    public function destroy($id, PendudukService $pendudukService)
+    {
+        $isDelete = $pendudukService->delete($id);
+        $status = $isDelete == 200 ? 'success-message' : 'error-message';
+        $message = $isDelete == 200 ? 'Berhasil Hapus Data.' : 'Gagal Menghapus Data.';
+        return redirect()->route('penduduk.index')->with($status, $message);
+    }
+
+    public function rekap()
+    {
+        $rw = DB::select('SELECT DISTINCT(rw) FROM ketua_rts');
+        $data = [];
+        foreach ($rw as $row) {
+            $data[$row->rw] = DB::select("SELECT DISTINCT(k.rt), 
+                            (SELECT 
+                            COUNT(id) 
+                            FROM penduduks
+                            WHERE TRIM(LEADING '0' FROM rt) = k.rt AND TRIM(LEADING '0' FROM rw) = " . $row->rw . ") AS jumlah_penduduk,
+                            
+                            (SELECT 
+                            COUNT(id) 
+                            FROM penduduks
+                            WHERE TRIM(LEADING '0' FROM rt) = k.rt AND TRIM(LEADING '0' FROM rw) = " . $row->rw . " AND gender ='L') AS jumlah_l,
+                            
+                            (SELECT 
+                            COUNT(id) 
+                            FROM penduduks
+                            WHERE TRIM(LEADING '0' FROM rt) = k.rt AND TRIM(LEADING '0' FROM rw) = " . $row->rw . " AND gender ='P') AS jumlah_p
+                            
+                            
+                            FROM ketua_rts k");
+        }
+
+
+        return view('penduduk.rekap', compact('data'));
+    }
+
+    public function dataMonografi(Request $request)
+    {
+        $dataMonografi = GetDataMonografiHelper::parsingData($request->rt, $request->rw, $request->filter_kondisi);
+        // dd($dataMonografi);
+        return view($dataMonografi['view'], $dataMonografi);
+    }
+
+    public function exportMonografi(Request $request, PendudukService $pendudukService)
+    {
+        $namaFile = $pendudukService->namaMonografi($request->query('kondisi'));
+        if ($request->query('btnType') == 'btnExcel') {
+            $name = $namaFile . '.xlsx';
+            $type = \Maatwebsite\Excel\Excel::XLSX;
+            return Excel::download(
+                new MonografiPendudukExport(
+                    $request->query('rt'),
+                    $request->query('rw'),
+                    $request->query('kondisi'),
+                ),
+                $name,
+                $type
+            );
+        } else {
+            $name = $namaFile . '.pdf';
+            $type = \Maatwebsite\Excel\Excel::MPDF;
+            $dataMonografi = GetDataMonografiHelper::parsingData($request->query('rt'), $request->query('rw'), $request->query('kondisi'));
+            // dd($dataMonografi);
+            $ukuran = $request->query('kondisi') == FilterMonografiPendudukHelper::BerdasarUmur ? 'a3' : 'a4';
+            $pdf = PDF::loadView($dataMonografi['export'], $dataMonografi['data'])->setPaper($ukuran, 'landscape');
+            return $pdf->stream($name);
+        }
     }
 }

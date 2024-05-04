@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             JenisPendidikanSeeder::class,
             JenisStatusMaritalSeeder::class,
             JenisMasterPekerjaanSeeder::class,
+            JenisStatusRelationSeeder::class,
         ]);
     }
 }

@@ -2,10 +2,10 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow">
+            <div class="card shadow border-bottom-primary">
                 <div class="card-header">
                     <div class="float-left">
-                        <h6 class="d-inline">Data Monografi Penduduk Berdasarkan Jenis Kelamin</h6>
+                        <h6 class="d-inline text-primary">Data Monografi Penduduk Berdasarkan Jenis Kelamin</h6>
                     </div>
                     <div class="float-right">
                         <button type="button" class="btn btn-success print-excel" onclick="exportData('btnExcel')"><svg

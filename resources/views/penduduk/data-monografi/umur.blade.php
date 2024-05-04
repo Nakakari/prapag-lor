@@ -2,10 +2,10 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card shadow">
+            <div class="card shadow border-bottom-primary">
                 <div class="card-header">
                     <div class="float-left">
-                        <h6 class="d-inline">Data Monografi Penduduk Berdasarkan Umur
+                        <h6 class="d-inline text-primary">Data Monografi Penduduk Berdasarkan Umur
                         </h6>
                     </div>
                     <div class="float-right">

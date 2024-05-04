@@ -14,4 +14,17 @@ class DataRw extends Model
     {
         return $this->hasMany(DataRt::class, 'rw_id');
     }
+
+    public function listData()
+    {
+        $all = $this->all();
+        $datas = [];
+        foreach ($all as $a) {
+            array_push(
+                $datas,
+                $a->id
+            );
+        }
+        return $datas;
+    }
 }

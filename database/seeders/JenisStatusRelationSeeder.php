@@ -18,9 +18,9 @@ class JenisStatusRelationSeeder extends Seeder
     {
         $data = [
             ['nama' => 'Anak'],
-            ['name' => 'Istri'],
-            ['name' => 'Kepala Rumah Tangga'],
-            ['name' => 'Lainnya'],
+            ['nama' => 'Istri'],
+            ['nama' => 'Kepala Rumah Tangga'],
+            ['nama' => 'Lainnya'],
         ];
         foreach ($data as $key => $v) {
             $key++;

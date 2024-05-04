@@ -67,7 +67,7 @@
                 <th rowspan="2" class="bordered">NO</th>
                 <th rowspan="2" class="bordered">NO RT</th>
                 @foreach ($data['berdasarkan']['list'] as $key => $row)
-                    <th colspan="3" class="bordered">{{ ucwords($row) }}</th>
+                    <th colspan="3" class="bordered">{{ ucwords($row['nama']) }}</th>
                 @endforeach
                 <th colspan="3" class="bordered">JUMLAH</th>
             </tr>
@@ -86,12 +86,12 @@
                     <td class="bordered">RT.00{{ $keyrt }}</td>
                     @foreach ($data['berdasarkan']['list'] as $keyag => $ag)
                         <td class="bordered text-right">
-                            {{ count($rt['L'][$ag]) > 0 ? count($rt['L'][$ag]) : '' }}
+                            {{ count($rt['L'][$ag['nama']]) > 0 ? count($rt['L'][$ag['nama']]) : '' }}
                         </td>
                         <td class="bordered text-right">
-                            {{ count($rt['P'][$ag]) > 0 ? count($rt['P'][$ag]) : '' }}</td>
+                            {{ count($rt['P'][$ag['nama']]) > 0 ? count($rt['P'][$ag['nama']]) : '' }}</td>
                         <td class="bordered color text-right">
-                            {{ count($rt['L'][$ag]) + count($rt['P'][$ag]) > 0 ? count($rt['L'][$ag]) + count($rt['P'][$ag]) : '' }}
+                            {{ count($rt['L'][$ag['nama']]) + count($rt['P'][$ag['nama']]) > 0 ? count($rt['L'][$ag['nama']]) + count($rt['P'][$ag['nama']]) : '' }}
                         </td>
                     @endforeach
                     <td class="text-right bordered">
@@ -110,11 +110,11 @@
                     00{{ $keyrw }}</td>
                 @foreach ($data['berdasarkan']['list'] as $keyag => $ag)
                     <td class="bordered text-right">
-                        {{ $rw[$ag]['tlaki'] > 0 ? $rw[$ag]['tlaki'] : '' }}</td>
+                        {{ $rw[$ag['nama']]['tlaki'] > 0 ? $rw[$ag['nama']]['tlaki'] : '' }}</td>
                     <td class="bordered text-right">
-                        {{ $rw[$ag]['tperem'] > 0 ? $rw[$ag]['tperem'] : '' }}</td>
+                        {{ $rw[$ag['nama']]['tperem'] > 0 ? $rw[$ag['nama']]['tperem'] : '' }}</td>
                     <td class="bordered color text-right">
-                        {{ $rw[$ag]['tlaki'] + $rw[$ag]['tperem'] > 0 ? $rw[$ag]['tlaki'] + $rw[$ag]['tperem'] : '' }}
+                        {{ $rw[$ag['nama']]['tlaki'] + $rw[$ag['nama']]['tperem'] > 0 ? $rw[$ag['nama']]['tlaki'] + $rw[$ag['nama']]['tperem'] : '' }}
                     </td>
                 @endforeach
                 <td class="text-right bordered">{{ $rw['tlaki'] > 0 ? $rw['tlaki'] : '' }}
@@ -137,7 +137,7 @@
             <th rowspan="2" class="bordered">NO</th>
             <th rowspan="2" class="bordered">NO RT</th>
             @foreach ($data['berdasarkan']['list'] as $key => $row)
-                <th colspan="3" class="bordered">{{ ucwords($row) }}</th>
+                <th colspan="3" class="bordered">{{ ucwords($row['nama']) }}</th>
             @endforeach
             <th colspan="3" class="bordered">JUMLAH</th>
         </tr>
@@ -152,11 +152,11 @@
             <td class="text-center bordered" colspan="2" style="font-weight: bold;">JUMLAH TOTAL</td>
             @foreach ($data['berdasarkan']['list'] as $keyag => $ag)
                 <td class="bordered text-right">
-                    {{ $data[$ag]['tslaki'] > 0 ? $data[$ag]['tslaki'] : '' }}</td>
+                    {{ $data[$ag['nama']]['tslaki'] > 0 ? $data[$ag['nama']]['tslaki'] : '' }}</td>
                 <td class="bordered text-right">
-                    {{ $data[$ag]['tsperem'] > 0 ? $data[$ag]['tsperem'] : '' }}</td>
+                    {{ $data[$ag['nama']]['tsperem'] > 0 ? $data[$ag['nama']]['tsperem'] : '' }}</td>
                 <td class="bordered color text-right">
-                    {{ $data[$ag]['tslaki'] + $data[$ag]['tsperem'] > 0 ? $data[$ag]['tslaki'] + $data[$ag]['tsperem'] : '' }}
+                    {{ $data[$ag['nama']]['tslaki'] + $data[$ag['nama']]['tsperem'] > 0 ? $data[$ag['nama']]['tslaki'] + $data[$ag['nama']]['tsperem'] : '' }}
                 </td>
             @endforeach
             <td class="text-right bordered">{{ $data['tslaki'] }}</td>
