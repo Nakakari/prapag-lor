@@ -104,10 +104,10 @@ use App\Helpers\AplikasiHelper;
                             </div>
                         @else
                             <div class="col-lg-3">
-                                {!! Form::text('rt', 'RT', auth()->user()->ketua_rt->rt)->readonly() !!}
+                                {!! Form::text('id_rt', 'RT', auth()->user()->ketua_rt->rt)->readonly() !!}
                             </div>
                             <div class="col-lg-3">
-                                {!! Form::text('rw', 'RW', auth()->user()->ketua_rt->rw)->readonly() !!}
+                                {!! Form::text('id_rw', 'RW', auth()->user()->ketua_rt->rw)->readonly() !!}
                             </div>
                         @endif
 
