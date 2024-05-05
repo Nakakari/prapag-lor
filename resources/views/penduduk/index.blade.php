@@ -73,7 +73,9 @@
                                                 id="pendidikan">
                                                 <option value=""> -- Pilih Pendidikan -- </option>
                                                 @foreach ($jenisPendidikan as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ request()->get('pendidikan') ? (request()->get('pendidikan') == $item->id ? 'selected' : '') : '' }}>
+                                                        {{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -106,7 +108,8 @@
                                                 id="pekerjaan">
                                                 <option value=""> -- Pilih Pekerjaan -- </option>
                                                 @foreach ($jenisPekerjaan as $item)
-                                                    <option value="{{ $item->id }}">
+                                                    <option value="{{ $item->id }}"
+                                                        {{ request()->get('pekerjaan') ? (request()->get('pekerjaan') == $item->id ? 'selected' : '') : '' }}>
                                                         {{ $item->kode . ' || ' . $item->deskripsi }}</option>
                                                 @endforeach
                                             </select>
@@ -117,9 +120,16 @@
                                     <div class="form-group row">
                                         <label for="goldar" class="col-lg-4">Golongan Darah</label>
                                         <div class="col-lg-8">
-                                            <input type="text" name="goldar" id="goldar"
-                                                class="form-control form-control-sm"
-                                                value="{{ request()->get('goldar') != null ? request()->get('goldar') : '' }}">
+                                            <select name="goldar"
+                                                class="form-control form-control-sm @if ($errors->has('goldar')) is-invalid @endif "
+                                                id="goldar">
+                                                <option value=""> -- Pilih Pekerjaan -- </option>
+                                                @foreach ($jenisGolDar as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ request()->get('goldar') ? (request()->get('goldar') == $item->id ? 'selected' : '') : '' }}>
+                                                        {{ $item->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +144,9 @@
                                                 id="gender">
                                                 <option value=""> -- Pilih Jenis Kelamin -- </option>
                                                 @foreach ($jenisKelamin as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ request()->get('gender') ? (request()->get('gender') == $item->id ? 'selected' : '') : '' }}>
+                                                        {{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -149,7 +161,9 @@
                                                 id="agama">
                                                 <option value=""> -- Pilih Agama -- </option>
                                                 @foreach ($jenisAgama as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ request()->get('agama') ? (request()->get('agama') == $item->id ? 'selected' : '') : '' }}>
+                                                        {{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -479,6 +493,10 @@
             $('#gender').select2({
                 allowClear: true,
                 placeholder: '-- Pilih Jenis Kelamin --'
+            })
+            $('#goldar').select2({
+                allowClear: true,
+                placeholder: '-- Pilih Golongan Darah --'
             })
 
             /* RW */

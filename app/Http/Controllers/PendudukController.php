@@ -63,7 +63,7 @@ class PendudukController extends Controller
         }
 
         if ($request->has('goldar') && $request->goldar != null) {
-            $data->where(Penduduk::id_jenis_golongan_darah, '=', $request->goldar);
+            $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
         }
 
         if ($request->has('gender') && $request->gender) {
