@@ -126,13 +126,13 @@ class Penduduk extends Model
                     }
                     $penduduk = $penduduk->get();
 
-                    $data['rw'][$rw]['rt'][$rt]['L'][$berdasar['nama']] = $penduduk->where('id_jenis_kelamin', '=', JenisKelaminHelper::LakiLaki)->count();
-                    $data['rw'][$rw]['rt'][$rt]['P'][$berdasar['nama']] = $penduduk->where('id_jenis_kelamin', '=', JenisKelaminHelper::Perempuan)->count();
+                    $data['rw'][$rw]['rt'][$rt]['L'][$berdasar] = $penduduk->where('id_jenis_kelamin', '=', JenisKelaminHelper::LakiLaki)->count();
+                    $data['rw'][$rw]['rt'][$rt]['P'][$berdasar] = $penduduk->where('id_jenis_kelamin', '=', JenisKelaminHelper::Perempuan)->count();
 
-                    $data['rw'][$rw]['rt'][$rt]['tlaki'] += $data['rw'][$rw]['rt'][$rt]['L'][$berdasar['nama']];
-                    $data['rw'][$rw]['rt'][$rt]['tperem'] += $data['rw'][$rw]['rt'][$rt]['P'][$berdasar['nama']];
-                    $totalRWL[$rw][$berdasar][$rt]['L'] = $data['rw'][$rw]['rt'][$rt]['L'][$berdasar['nama']];
-                    $totalRWL[$rw][$berdasar][$rt]['P'] = $data['rw'][$rw]['rt'][$rt]['P'][$berdasar['nama']];
+                    $data['rw'][$rw]['rt'][$rt]['tlaki'] += $data['rw'][$rw]['rt'][$rt]['L'][$berdasar];
+                    $data['rw'][$rw]['rt'][$rt]['tperem'] += $data['rw'][$rw]['rt'][$rt]['P'][$berdasar];
+                    $totalRWL[$rw][$berdasar][$rt]['L'] = $data['rw'][$rw]['rt'][$rt]['L'][$berdasar];
+                    $totalRWL[$rw][$berdasar][$rt]['P'] = $data['rw'][$rw]['rt'][$rt]['P'][$berdasar];
                 }
                 $data['rw'][$rw]['tlaki'] += $data['rw'][$rw]['rt'][$rt]['tlaki'];
                 $data['rw'][$rw]['tperem'] += $data['rw'][$rw]['rt'][$rt]['tperem'];
