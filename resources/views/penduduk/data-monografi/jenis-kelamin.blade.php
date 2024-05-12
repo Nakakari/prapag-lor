@@ -56,9 +56,9 @@
                             <tfoot>
                                 <tr>
                                     <td class="text-center" colspan="2">Jumlah RW : 00{{ $keyrw }}</td>
+                                    <td class="text-right">{{ $l }}</td>
                                     <td class="text-right">{{ $p }}</td>
-                                    <td class="text-right">{{ $p }}</td>
-                                    <td class="text-right">{{ $p + $p }}</td>
+                                    <td class="text-right">{{ $l + $p }}</td>
                                 </tr>
                             </tfoot>
                         </table>
