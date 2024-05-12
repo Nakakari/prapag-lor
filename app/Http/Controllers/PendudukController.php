@@ -283,7 +283,7 @@ class PendudukController extends Controller
             $type = \Maatwebsite\Excel\Excel::MPDF;
             $dataMonografi = GetDataMonografiHelper::parsingData($request->query('rt'), $request->query('rw'), $request->query('kondisi'));
             // dd($dataMonografi);
-            $ukuran = $request->query('kondisi') == FilterMonografiPendudukHelper::BerdasarUmur ? 'a3' : 'a4';
+            $ukuran = $request->query('kondisi') == 'a3';
             $pdf = PDF::loadView($dataMonografi['export'], $dataMonografi['data'])->setPaper($ukuran, 'landscape');
             return $pdf->stream($name);
         }

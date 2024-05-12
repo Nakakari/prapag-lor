@@ -68,7 +68,7 @@ class GetDataMonografiHelper
             $data['data'] = (new Penduduk())->monografiPekerjaan($getRw, $getRt);
             // dd($data['data']);
             $view = 'penduduk.data-monografi.jenis-pekerjaan';
-            $export = 'penduduk.export.monografi-jenis-pekerjaan';
+            $export = 'penduduk.export.monografi-pekerjaan';
             $judul = FilterMonografiPendudukHelper::BerdasarJenisPekerjaanText;
         }
         $request = [

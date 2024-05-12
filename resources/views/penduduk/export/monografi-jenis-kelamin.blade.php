@@ -69,6 +69,10 @@ $jmlPerempuan = 0;
             </tr>
         </thead>
         <tbody>
+            <?php
+            $p = 0;
+            $l = 0;
+            ?>
             @foreach ($rw['rt'] as $keyrt => $rt)
                 <tr>
                     <td class="text-center" style="border: 1px solid black;border-collapse: collapse;">
@@ -82,6 +86,8 @@ $jmlPerempuan = 0;
                     <td class="text-right" style="border: 1px solid black;border-collapse: collapse;">
                         {{ count($rt['L']) + count($rt['P']) }}</td>
                 </tr>
+                <?php $p += count($rt['P']);
+                $l += count($rt['L']); ?>
             @endforeach
         </tbody>
         <tfoot>
@@ -91,13 +97,13 @@ $jmlPerempuan = 0;
                     JUMLAH
                     RW : 00{{ $keyrw }}</td>
                 <td class="text-right" style="border: 1px solid black;border-collapse: collapse; background: #d3d3d3;">
-                    {{ $rw['tlaki'] }}
+                    {{ $l }}
                 </td>
                 <td class="text-right" style="border: 1px solid black;border-collapse: collapse; background: #d3d3d3;">
-                    {{ $rw['tperem'] }}
+                    {{ $p }}
                 </td>
                 <td class="text-right" style="border: 1px solid black;border-collapse: collapse; background: #d3d3d3;">
-                    {{ $rw['tlaki'] + $rw['tperem'] }}</td>
+                    {{ $l + $p }}</td>
             </tr>
             <tr>
                 <td colspan="{{ $totalCol }}">&nbsp;</td>
@@ -105,8 +111,8 @@ $jmlPerempuan = 0;
         </tfoot>
     </table>
     <?php
-    $jmlLaki += $rw['tlaki'];
-    $jmlPerempuan += $rw['tperem'];
+    $jmlLaki += $l;
+    $jmlPerempuan += $p;
     ?>
 @endforeach
 <table style="border-collapse: collapse;" width="100%">
