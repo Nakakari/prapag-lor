@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\JenisKelaminHelper;
+use App\Helpers\JenisStatusRelationHelper;
 use App\Models\Setting\JenisAgama;
 use App\Models\Setting\JenisGolonganDarah;
 use App\Models\Setting\JenisKelamin;
@@ -30,6 +31,7 @@ class Penduduk extends Model
     const id_jenis_golongan_darah = 'penduduks.id_jenis_golongan_darah';
     const id_jenis_agama = 'penduduks.id_jenis_agama';
     const id_jenis_status_marital = 'penduduks.id_jenis_status_marital';
+    const id_jenis_status_relation = 'penduduks.id_jenis_status_relation';
 
     public function goldar()
     {
@@ -263,7 +265,7 @@ class Penduduk extends Model
     {
         $penduduk = Penduduk::query()
             ->where('is_penduduk', true)
-            ->where('id_jenis_status_relation', 'kepala keluarga')
+            ->where(Penduduk::id_jenis_status_relation, JenisStatusRelationHelper::KepalaRumahTangga)
             ->get();
         $data = [];
         foreach ($getRw as $rw) {

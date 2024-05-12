@@ -26,7 +26,6 @@ class GetDataMonografiHelper
         } else {
             $getRt = (new DataRt())->listData();
         }
-
         if ($jenisMonografi == FilterMonografiPendudukHelper::BerdasarJenisKelamin) { //jenis kelamin
             $data['data'] = (new Penduduk())->monografiJenisKelamin($getRw, $getRt);
             // dd($data);
