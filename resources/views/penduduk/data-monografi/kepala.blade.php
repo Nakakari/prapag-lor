@@ -40,6 +40,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $p = 0;
+                                $l = 0;
+                                ?>
                                 @foreach ($rw['rt'] as $keyrt => $rt)
                                     <tr>
                                         <td class="text-center">{{ $keyrt }}</td>
@@ -48,14 +52,16 @@
                                         <td class="text-right">{{ count($rt['P']) }}</td>
                                         <td class="text-right">{{ count($rt['L']) + count($rt['P']) }}</td>
                                     </tr>
+                                    <?php $p += count($rt['P']);
+                                    $l += count($rt['L']); ?>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td class="text-center" colspan="2">Jumlah RW : 00{{ $keyrw }}</td>
-                                    <td class="text-right">{{ $rw['tlaki'] }}</td>
-                                    <td class="text-right">{{ $rw['tperem'] }}</td>
-                                    <td class="text-right">{{ $rw['tlaki'] + $rw['tperem'] }}</td>
+                                    <td class="text-right">{{ $l }}</td>
+                                    <td class="text-right">{{ $p }}</td>
+                                    <td class="text-right">{{ $l + $p }}</td>
                                 </tr>
                             </tfoot>
                         </table>
