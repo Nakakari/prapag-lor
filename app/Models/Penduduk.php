@@ -20,7 +20,7 @@ class Penduduk extends Model
     protected $table = 'penduduks';
     protected $guarded = ['id'];
 
-    const id_jenis_kelamin = 'penduduks.id_jenis_kelamin';
+    const id_jenis_kelamin = 'id_jenis_kelamin';
     const id_rt = 'penduduks.id_rt';
     const id_rw = 'penduduks.id_rw';
     const nik = 'penduduks.nik';

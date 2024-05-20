@@ -80,6 +80,10 @@
             </tr>
         </thead>
         <tbody>
+            <?php
+            $p = 0;
+            $l = 0;
+            ?>
             @foreach ($rw['rt'] as $keyrt => $rt)
                 <tr>
                     <td class="text-center bordered">{{ $keyrt }}</td>

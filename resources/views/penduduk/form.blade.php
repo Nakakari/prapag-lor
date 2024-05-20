@@ -174,9 +174,8 @@ use App\Helpers\AplikasiHelper;
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label>Golongan Darah</label>
-                                <select name="id_jenis_golongan_darah" class="form-control" id="id_jenis_golongan_darah"
-                                    required>
+                                <label>Golongan Darah (Opsional)</label>
+                                <select name="id_jenis_golongan_darah" class="form-control" id="id_jenis_golongan_darah">
                                     <option value=""></option>
                                     @foreach ($jenisGolDar as $item)
                                         <option value="{{ $item->id }}"

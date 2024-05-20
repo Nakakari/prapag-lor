@@ -94,8 +94,9 @@ class PendudukController extends Controller
 
         $data = $data->orderBy('created_at', 'DESC')->get();
 
-        $laki = $data->where(Penduduk::id_jenis_kelamin, '=', JenisKelaminHelper::LakiLaki)->count();
-        $perempuan = $data->where(Penduduk::id_jenis_kelamin, '=', JenisKelaminHelper::Perempuan)->count();
+        // dd($data->where('id_jenis_kelamin', JenisKelaminHelper::Perempuan));
+        $laki = $data->where(Penduduk::id_jenis_kelamin, JenisKelaminHelper::LakiLaki)->count();
+        $perempuan = $data->where(Penduduk::id_jenis_kelamin, JenisKelaminHelper::Perempuan)->count();
         $total = $laki + $perempuan;
         $penduduk = (new ClassMonografiPendudukHelper())->fieldKondisi();
         $jenisAgama = JenisAgama::all();
