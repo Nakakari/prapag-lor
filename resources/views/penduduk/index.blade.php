@@ -23,195 +23,194 @@
                 </div>
 
                 <div class="card-body table-responsive">
-                    @if (auth()->user()->role != 'ketua_rt')
-                        <form action="{{ url('penduduk') }}" method="GET">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="nik" class="col-lg-4">NIK</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" name="nik" id="nik"
-                                                class="form-control form-control-sm"
-                                                onkeypress="return numbersonly(this, event);" maxlength="16"
-                                                placeholder="NIK"
-                                                value="{{ request()->get('nik') != null ? request()->get('nik') : '' }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="no_kk" class="col-lg-4">NO KK</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" name="no_kk" id="no_kk"
-                                                class="form-control form-control-sm"
-                                                onkeypress="return numbersonly(this, event);" maxlength="16"
-                                                placeholder="No. KK"
-                                                value="{{ request()->get('no_kk') != null ? request()->get('no_kk') : '' }}">
-                                        </div>
+                    {{-- @if (auth()->user()->role != 'ketua_rt') --}}
+                    <form action="{{ url('penduduk') }}" method="GET">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="nik" class="col-lg-4">NIK</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" name="nik" id="nik"
+                                            class="form-control form-control-sm"
+                                            onkeypress="return numbersonly(this, event);" maxlength="16" placeholder="NIK"
+                                            value="{{ request()->get('nik') != null ? request()->get('nik') : '' }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="form-group row">
-                                        <label for="nama" class="col-lg-2">Nama</label>
-                                        <div class="col-lg-10">
-                                            <input type="text" name="nama" id="nama"
-                                                class="form-control form-control-sm"
-                                                value="{{ request()->get('nama') != null ? request()->get('nama') : '' }}">
-                                        </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="no_kk" class="col-lg-4">NO KK</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" name="no_kk" id="no_kk"
+                                            class="form-control form-control-sm"
+                                            onkeypress="return numbersonly(this, event);" maxlength="16"
+                                            placeholder="No. KK"
+                                            value="{{ request()->get('no_kk') != null ? request()->get('no_kk') : '' }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="pendidikan" class="col-lg-4">Pendidikan</label>
-                                        <div class="col-lg-8">
-                                            <select name="pendidikan"
-                                                class="form-control form-control-sm @if ($errors->has('pendidikan')) is-invalid @endif "
-                                                id="pendidikan">
-                                                <option value=""> -- Pilih Pendidikan -- </option>
-                                                @foreach ($jenisPendidikan as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ request()->get('pendidikan') ? (request()->get('pendidikan') == $item->id ? 'selected' : '') : '' }}>
-                                                        {{ $item->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="umur" class="col-lg-4">Umur</label>
-                                        <div class="col-lg-3">
-                                            <input type="number" name="umur" id="umur"
-                                                class="form-control form-control-sm"
-                                                value="{{ request()->get('umur') != null ? request()->get('umur') : '' }}">
-                                        </div>
-                                        <label for="umur2" class="col-lg-2">s/d</label>
-                                        <div class="col-lg-3">
-                                            <input type="number" name="umur2" id="umur2"
-                                                class="form-control form-control-sm"
-                                                value="{{ request()->get('umur2') != null ? request()->get('umur2') : '' }}">
-                                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group row">
+                                    <label for="nama" class="col-lg-2">Nama</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="nama" id="nama"
+                                            class="form-control form-control-sm"
+                                            value="{{ request()->get('nama') != null ? request()->get('nama') : '' }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="pekerjaan" class="col-lg-4">Pekerjaan</label>
-                                        <div class="col-lg-8">
-                                            <select name="pekerjaan"
-                                                class="form-control form-control-sm @if ($errors->has('pekerjaan')) is-invalid @endif "
-                                                id="pekerjaan">
-                                                <option value=""> -- Pilih Pekerjaan -- </option>
-                                                @foreach ($jenisPekerjaan as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ request()->get('pekerjaan') ? (request()->get('pekerjaan') == $item->id ? 'selected' : '') : '' }}>
-                                                        {{ $item->kode . ' || ' . $item->deskripsi }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="goldar" class="col-lg-4">Golongan Darah</label>
-                                        <div class="col-lg-8">
-                                            <select name="goldar"
-                                                class="form-control form-control-sm @if ($errors->has('goldar')) is-invalid @endif "
-                                                id="goldar">
-                                                <option value=""> -- Pilih Pekerjaan -- </option>
-                                                @foreach ($jenisGolDar as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ request()->get('goldar') ? (request()->get('goldar') == $item->id ? 'selected' : '') : '' }}>
-                                                        {{ $item->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="pendidikan" class="col-lg-4">Pendidikan</label>
+                                    <div class="col-lg-8">
+                                        <select name="pendidikan"
+                                            class="form-control form-control-sm @if ($errors->has('pendidikan')) is-invalid @endif "
+                                            id="pendidikan">
+                                            <option value=""> -- Pilih Pendidikan -- </option>
+                                            @foreach ($jenisPendidikan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request()->get('pendidikan') ? (request()->get('pendidikan') == $item->id ? 'selected' : '') : '' }}>
+                                                    {{ $item->nama }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="gender" class="col-lg-4">Jenis Kelamin</label>
-                                        <div class="col-lg-8">
-                                            <select name="gender"
-                                                class="form-control form-control-sm @if ($errors->has('gender')) is-invalid @endif "
-                                                id="gender">
-                                                <option value=""> -- Pilih Jenis Kelamin -- </option>
-                                                @foreach ($jenisKelamin as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ request()->get('gender') ? (request()->get('gender') == $item->id ? 'selected' : '') : '' }}>
-                                                        {{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="umur" class="col-lg-4">Umur</label>
+                                    <div class="col-lg-3">
+                                        <input type="number" name="umur" id="umur"
+                                            class="form-control form-control-sm"
+                                            value="{{ request()->get('umur') != null ? request()->get('umur') : '' }}">
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="agama" class="col-lg-4">Agama</label>
-                                        <div class="col-lg-8">
-                                            <select name="agama"
-                                                class="form-control form-control-sm @if ($errors->has('agama')) is-invalid @endif "
-                                                id="agama">
-                                                <option value=""> -- Pilih Agama -- </option>
-                                                @foreach ($jenisAgama as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ request()->get('agama') ? (request()->get('agama') == $item->id ? 'selected' : '') : '' }}>
-                                                        {{ $item->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <label for="umur2" class="col-lg-2">s/d</label>
+                                    <div class="col-lg-3">
+                                        <input type="number" name="umur2" id="umur2"
+                                            class="form-control form-control-sm"
+                                            value="{{ request()->get('umur2') != null ? request()->get('umur2') : '' }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="rw" class="col-lg-4">RW</label>
-                                        <div class="col-lg-8">
-                                            <select name="rw"
-                                                class="form-control form-control-sm @if ($errors->has('rw')) is-invalid @endif "
-                                                id="rw">
-                                                <option value=""> -- Pilih RW -- </option>
-                                                @foreach (App\Models\DataRw::with('rts')->get() as $row)
-                                                    <option value="{{ $row->name }}" data-rt="{{ $row->rts }}">
-                                                        00{{ $row->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="pekerjaan" class="col-lg-4">Pekerjaan</label>
+                                    <div class="col-lg-8">
+                                        <select name="pekerjaan"
+                                            class="form-control form-control-sm @if ($errors->has('pekerjaan')) is-invalid @endif "
+                                            id="pekerjaan">
+                                            <option value=""> -- Pilih Pekerjaan -- </option>
+                                            @foreach ($jenisPekerjaan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request()->get('pekerjaan') ? (request()->get('pekerjaan') == $item->id ? 'selected' : '') : '' }}>
+                                                    {{ $item->kode . ' || ' . $item->deskripsi }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group row">
-                                        <label for="rt" class="col-lg-4">RT</label>
-                                        <div class="col-lg-8">
-                                            <select name="rt"
-                                                class="form-control form-control-sm @if ($errors->has('rt')) is-invalid @endif "
-                                                id="rt" disabled="">
-                                                <option value=""> -- Pilih RT -- </option>
-                                            </select>
-                                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="goldar" class="col-lg-4">Golongan Darah</label>
+                                    <div class="col-lg-8">
+                                        <select name="goldar"
+                                            class="form-control form-control-sm @if ($errors->has('goldar')) is-invalid @endif "
+                                            id="goldar">
+                                            <option value=""> -- Pilih Pekerjaan -- </option>
+                                            @foreach ($jenisGolDar as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request()->get('goldar') ? (request()->get('goldar') == $item->id ? 'selected' : '') : '' }}>
+                                                    {{ $item->nama }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="gender" class="col-lg-4">Jenis Kelamin</label>
+                                    <div class="col-lg-8">
+                                        <select name="gender"
+                                            class="form-control form-control-sm @if ($errors->has('gender')) is-invalid @endif "
+                                            id="gender">
+                                            <option value=""> -- Pilih Jenis Kelamin -- </option>
+                                            @foreach ($jenisKelamin as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request()->get('gender') ? (request()->get('gender') == $item->id ? 'selected' : '') : '' }}>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="agama" class="col-lg-4">Agama</label>
+                                    <div class="col-lg-8">
+                                        <select name="agama"
+                                            class="form-control form-control-sm @if ($errors->has('agama')) is-invalid @endif "
+                                            id="agama">
+                                            <option value=""> -- Pilih Agama -- </option>
+                                            @foreach ($jenisAgama as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request()->get('agama') ? (request()->get('agama') == $item->id ? 'selected' : '') : '' }}>
+                                                    {{ $item->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="rw" class="col-lg-4">RW</label>
+                                    <div class="col-lg-8">
+                                        <select name="rw"
+                                            class="form-control form-control-sm @if ($errors->has('rw')) is-invalid @endif "
+                                            id="rw">
+                                            <option value=""> -- Pilih RW -- </option>
+                                            @foreach (App\Models\DataRw::with('rts')->get() as $row)
+                                                <option value="{{ $row->name }}" data-rt="{{ $row->rts }}">
+                                                    00{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group row">
+                                    <label for="rt" class="col-lg-4">RT</label>
+                                    <div class="col-lg-8">
+                                        <select name="rt"
+                                            class="form-control form-control-sm @if ($errors->has('rt')) is-invalid @endif "
+                                            id="rt" disabled="">
+                                            <option value=""> -- Pilih RT -- </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <div class="col-lg-4">
-                                    <button type="submit" class="btn btn-info btn-sm">
-                                        <i class="feather-16" data-feather="filter"></i> Filter
-                                    </button>
-                                    <a href="{{ url('penduduk') }}" class="btn btn-danger btn-sm">
-                                        <i class="feather-16" data-feather="refresh-cw"></i> Reset
-                                    </a>
-                                </div>
-
+                            <div class="col-lg-4">
+                                <button type="submit" class="btn btn-info btn-sm">
+                                    <i class="feather-16" data-feather="filter"></i> Filter
+                                </button>
+                                <a href="{{ url('penduduk') }}" class="btn btn-danger btn-sm">
+                                    <i class="feather-16" data-feather="refresh-cw"></i> Reset
+                                </a>
                             </div>
-                        </form>
-                    @endif
+
+                        </div>
+                    </form>
+                    {{-- @endif --}}
                     <div class="row justify-content-end mb-2">
                         <div class="col-lg-4">
                             <button class="btn btn-danger btn-sm" onclick="registerPendataanExport('btnPdf')">
