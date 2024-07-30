@@ -9,4 +9,5 @@ interface AplikasiHelper
     const kabupaten = 'Brebes';
     const provinsi = 'Jawa Tengah';
     const Kades = 'Tarwudi';
+    const logo = 'img/logo-brebes.jpg';
 }

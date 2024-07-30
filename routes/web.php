@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('surat-tidak-manpu/{id}', 'suratTidakMampu')->name('penduduk.surat-tidak-mampu');
         Route::get('export-monografi', 'exportMonografi')->name('penduduk.export-monografi');
         Route::post('data-monografi', 'dataMonografi')->name('penduduk.data-monografi');
+        // EXPORT PDF EXCEL PENDUDUK
+        Route::get('penduduk-export', 'pendudukExport')->name('penduduk.register-export');
     });
 
     /* DATA KEMATIAN */

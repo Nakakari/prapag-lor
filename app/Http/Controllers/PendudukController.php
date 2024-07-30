@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\MonografiPendudukExport;
+use App\Exports\RegisterPendudukExport;
 use App\Helpers\AplikasiHelper;
 use App\Helpers\ClassMonografiPendudukHelper;
 use App\Helpers\FilterMonografiPendudukHelper;
@@ -29,70 +30,14 @@ use Ramsey\Uuid\Uuid;
 use Throwable;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Maatwebsite\Excel\Facades\Excel;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
+
 
 class PendudukController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Penduduk::query();
-
-        if ($request->has('rt') && $request->rt) {
-            $data->where(Penduduk::id_rt, $request->rt);
-        }
-
-        if ($request->has('rw') && $request->rw) {
-            $data->where(Penduduk::id_rw, $request->rw);
-        }
-
-        if ($request->has('nik') && $request->nik != null) {
-            $data->where(Penduduk::nik, '=', $request->nik);
-        }
-        if ($request->has('no_kk') && $request->no_kk != null) {
-            $data->where(Penduduk::no_kk, '=', $request->no_kk);
-        }
-        if ($request->has('nama') && $request->nama != null) {
-            $data->where(Penduduk::nama, '=', $request->nama);
-        }
-
-        if ($request->has('pendidikan') && $request->pendidikan) {
-            $data->where(Penduduk::id_jenis_pendidikan, $request->pendidikan);
-        }
-
-        if ($request->has('pekerjaan') && $request->pekerjaan) {
-            $data->where(Penduduk::id_master_pekerjaan, $request->pekerjaan);
-        }
-
-        if ($request->has('goldar') && $request->goldar != null) {
-            $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
-        }
-
-        if ($request->has('gender') && $request->gender) {
-            $data->where(Penduduk::id_jenis_kelamin, $request->gender);
-        }
-
-        if ($request->has('agama') && $request->agama) {
-            $data->where(Penduduk::id_jenis_agama, $request->agama);
-        }
-
-        if ($request->has('umur') && $request->umur != null) {
-            $awal = date('Y') - $request->umur;
-            $awal = Carbon::create($awal, 1, 1)->addYear()->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir < "' . $awal . '"');
-        }
-        if ($request->has('umur2') && $request->umur2 != null) {
-            $akhir = date('Y') - $request->umur2;
-            $akhir = Carbon::create($akhir, 1, 1)->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
-        }
-
-        $data->where('is_penduduk', true);
-
-        if (auth()->user()->role == 'ketua_rt' && auth()->user()->ketua_rt) {
-            $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
-            $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
-        }
-
-        $data = $data->orderBy('created_at', 'DESC')->get();
+        $data = $this->queryPenduduk($request);
 
         // dd($data->where('id_jenis_kelamin', JenisKelaminHelper::Perempuan));
         $laki = $data->where(Penduduk::id_jenis_kelamin, JenisKelaminHelper::LakiLaki)->count();
@@ -288,5 +233,108 @@ class PendudukController extends Controller
             $pdf = PDF::loadView($dataMonografi['export'], $dataMonografi['data'])->setPaper($ukuran, 'landscape');
             return $pdf->stream($name);
         }
+    }
+
+    public function pendudukExport(Request $request)
+    {
+        $namaFile = 'Register Penduduk';
+
+        if ($request->query('btnType') == 'btnExcel') {
+            $name = $namaFile . '.xlsx';
+            $type = \Maatwebsite\Excel\Excel::XLSX;
+            return Excel::download(
+                new RegisterPendudukExport(
+                    $request->query('nik'),
+                    $request->query('no_kk'),
+                    $request->query('nama'),
+                    $request->query('pendidikan'),
+                    $request->query('umur'),
+                    $request->query('umur2'),
+                    $request->query('pekerjaan'),
+                    $request->query('goldar'),
+                    $request->query('gender'),
+                    $request->query('agama'),
+                    $request->query('rw'),
+                    $request->query('rt'),
+                ),
+                $name,
+                $type
+            );
+        } else {
+            $name = $namaFile . '.pdf';
+            $type = \Maatwebsite\Excel\Excel::MPDF;
+            $data = [
+                'data' => $this->queryPenduduk($request),
+            ];
+            $pdf = LaravelMpdf::loadView('penduduk.export.register-penduduk-pdf', $data, [], [
+                'title' => 'Export Penduduk',
+                'format' => 'A3-L'
+            ]);
+            return $pdf->stream('Export Penduduk.pdf');
+        }
+    }
+
+    public function queryPenduduk($request)
+    {
+        $data = Penduduk::query();
+
+        if ($request->has('rt') && $request->rt) {
+            $data->where(Penduduk::id_rt, $request->rt);
+        }
+
+        if ($request->has('rw') && $request->rw) {
+            $data->where(Penduduk::id_rw, $request->rw);
+        }
+
+        if ($request->has('nik') && $request->nik != null) {
+            $data->where(Penduduk::nik, '=', $request->nik);
+        }
+        if ($request->has('no_kk') && $request->no_kk != null) {
+            $data->where(Penduduk::no_kk, '=', $request->no_kk);
+        }
+        if ($request->has('nama') && $request->nama != null) {
+            $data->where(Penduduk::nama, '=', $request->nama);
+        }
+
+        if ($request->has('pendidikan') && $request->pendidikan) {
+            $data->where(Penduduk::id_jenis_pendidikan, $request->pendidikan);
+        }
+
+        if ($request->has('pekerjaan') && $request->pekerjaan) {
+            $data->where(Penduduk::id_master_pekerjaan, $request->pekerjaan);
+        }
+
+        if ($request->has('goldar') && $request->goldar != null) {
+            $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
+        }
+
+        if ($request->has('gender') && $request->gender) {
+            $data->where(Penduduk::id_jenis_kelamin, $request->gender);
+        }
+
+        if ($request->has('agama') && $request->agama) {
+            $data->where(Penduduk::id_jenis_agama, $request->agama);
+        }
+
+        if ($request->has('umur') && $request->umur != null) {
+            $awal = date('Y') - $request->umur;
+            $awal = Carbon::create($awal, 1, 1)->addYear()->format('Y-m-d');
+            $data->whereRaw('tanggal_lahir < "' . $awal . '"');
+        }
+        if ($request->has('umur2') && $request->umur2 != null) {
+            $akhir = date('Y') - $request->umur2;
+            $akhir = Carbon::create($akhir, 1, 1)->format('Y-m-d');
+            $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
+        }
+
+        $data->where('is_penduduk', true);
+
+        if (auth()->user()->role == 'ketua_rt' && auth()->user()->ketua_rt) {
+            $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
+            $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
+        }
+
+        $data = $data->orderBy('created_at', 'DESC')->get();
+        return $data;
     }
 }
