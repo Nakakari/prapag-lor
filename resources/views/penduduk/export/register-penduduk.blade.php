@@ -9,7 +9,7 @@
             {{-- <th style="text-align: left;">
                 <img src="{{ AplikasiHelper::logo }}" alt="" height="60">
             </th> --}}
-            <th colspan="16" style="font-weight: bold;">
+            <th colspan="15" style="font-weight: bold;">
                 PEMERINTAH DESA {{ strtoupper(AplikasiHelper::desa) }}<br>
                 {{ strtoupper(AplikasiHelper::desa . ', ' . AplikasiHelper::kecamatan . ', ' . AplikasiHelper::kabupaten . ', ' . AplikasiHelper::provinsi) }}
             </th>
@@ -47,11 +47,10 @@
             <tr>
                 <td style="text-align:center;">{{ $loop->iteration }}</td>
                 <td style="">
-                    {{ $row->nik }}
+                    '{{ $row->nik }}
                 </td>
                 <td style="">
-                    {{ $row->no_kk }}
-
+                    '{{ $row->no_kk }}
                 </td>
                 <td style="">
                     {{ strtoupper($row->nama) }}

@@ -46,13 +46,13 @@
         text-align: right;
     }
 </style>
-<table style="border-collapse: collapse;" width=100%>
+<table style="border-collapse: collapse;" width="100%">
     <thead>
         <tr>
             {{-- <th style="text-align: left;">
                 <img src="{{ AplikasiHelper::logo }}" alt="" height="60">
             </th> --}}
-            <th colspan="16" style="font-weight: bold;">
+            <th colspan="15" style="font-weight: bold;">
                 PEMERINTAH DESA {{ strtoupper(AplikasiHelper::desa) }}<br>
                 {{ strtoupper(AplikasiHelper::desa . ', ' . AplikasiHelper::kecamatan . ', ' . AplikasiHelper::kabupaten . ', ' . AplikasiHelper::provinsi) }}
             </th>

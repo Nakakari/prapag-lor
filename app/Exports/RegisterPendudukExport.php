@@ -58,7 +58,7 @@ class RegisterPendudukExport implements FromView, WithEvents, ShouldAutoSize
                 );
 
                 // HEADER & BODY
-                $countCell = $this->queryExport()->count() + 3;
+                $countCell = $this->queryExport()->count() + 5;
                 $cellRange = 'A4:O' . $countCell;
                 $styleArray = [
                     'borders' => [
@@ -86,59 +86,59 @@ class RegisterPendudukExport implements FromView, WithEvents, ShouldAutoSize
         $data = Penduduk::query();
 
         if ($this->rt && $this->rt) {
-            $data->where(Penduduk::id_rt, $this->rt);
+            $data = $data->where(Penduduk::id_rt, $this->rt);
         }
 
         if ($this->rw && $this->rw) {
-            $data->where(Penduduk::id_rw, $this->rw);
+            $data = $data->where(Penduduk::id_rw, $this->rw);
         }
 
         if ($this->nik && $this->nik != null) {
-            $data->where(Penduduk::nik, '=', $this->nik);
+            $data = $data->where(Penduduk::nik, '=', $this->nik);
         }
         if ($this->no_kk && $this->no_kk != null) {
-            $data->where(Penduduk::no_kk, '=', $this->no_kk);
+            $data = $data->where(Penduduk::no_kk, '=', $this->no_kk);
         }
         if ($this->nama && $this->nama != null) {
-            $data->where(Penduduk::nama, '=', $this->nama);
+            $data =  $data->where(Penduduk::nama, '=', $this->nama);
         }
 
         if ($this->pendidikan && $this->pendidikan) {
-            $data->where(Penduduk::id_jenis_pendidikan, $this->pendidikan);
+            $data =  $data->where(Penduduk::id_jenis_pendidikan, $this->pendidikan);
         }
 
         if ($this->pekerjaan && $this->pekerjaan) {
-            $data->where(Penduduk::id_master_pekerjaan, $this->pekerjaan);
+            $data = $data->where(Penduduk::id_master_pekerjaan, $this->pekerjaan);
         }
 
         if ($this->goldar && $this->goldar != null) {
-            $data->where(Penduduk::id_jenis_golongan_darah, $this->goldar);
+            $data = $data->where(Penduduk::id_jenis_golongan_darah, $this->goldar);
         }
 
         if ($this->gender && $this->gender) {
-            $data->where(Penduduk::id_jenis_kelamin, $this->gender);
+            $data = $data->where(Penduduk::id_jenis_kelamin, $this->gender);
         }
 
         if ($this->agama && $this->agama) {
-            $data->where(Penduduk::id_jenis_agama, $this->agama);
+            $data = $data->where(Penduduk::id_jenis_agama, $this->agama);
         }
 
         if ($this->umur && $this->umur != null) {
             $awal = date('Y') - $this->umur;
             $awal = Carbon::create($awal, 1, 1)->addYear()->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir < "' . $awal . '"');
+            $data = $data->whereRaw('tanggal_lahir < "' . $awal . '"');
         }
         if ($this->umur2 && $this->umur2 != null) {
             $akhir = date('Y') - $this->umur2;
             $akhir = Carbon::create($akhir, 1, 1)->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
+            $data = $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
         }
 
-        $data->where('is_penduduk', true);
+        $data = $data->where('is_penduduk', true);
 
         if (auth()->user()->role == 'ketua_rt' && auth()->user()->ketua_rt) {
-            $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
-            $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
+            $data = $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
+            $data = $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
         }
 
         $data = $data->orderBy('created_at', 'DESC')->get();

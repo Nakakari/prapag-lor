@@ -266,7 +266,8 @@ class PendudukController extends Controller
             $data = [
                 'data' => $this->queryPenduduk($request),
             ];
-            $pdf = PDF::loadView('penduduk.export.register-penduduk-pdf', $data)->setPaper('A3-L', 'landscape');
+            // dd($data);
+            $pdf = PDF::loadView('penduduk.export.register-penduduk-pdf', $data)->setPaper('A4', 'landscape');
             return $pdf->stream($name);
         }
     }
@@ -276,59 +277,59 @@ class PendudukController extends Controller
         $data = Penduduk::query();
 
         if ($request->has('rt') && $request->rt) {
-            $data->where(Penduduk::id_rt, $request->rt);
+            $data = $data->where(Penduduk::id_rt, $request->rt);
         }
 
         if ($request->has('rw') && $request->rw) {
-            $data->where(Penduduk::id_rw, $request->rw);
+            $data = $data->where(Penduduk::id_rw, $request->rw);
         }
 
         if ($request->has('nik') && $request->nik != null) {
-            $data->where(Penduduk::nik, '=', $request->nik);
+            $data = $data->where(Penduduk::nik, '=', $request->nik);
         }
         if ($request->has('no_kk') && $request->no_kk != null) {
-            $data->where(Penduduk::no_kk, '=', $request->no_kk);
+            $data = $data->where(Penduduk::no_kk, '=', $request->no_kk);
         }
         if ($request->has('nama') && $request->nama != null) {
-            $data->where(Penduduk::nama, '=', $request->nama);
+            $data = $data->where(Penduduk::nama, '=', $request->nama);
         }
 
         if ($request->has('pendidikan') && $request->pendidikan) {
-            $data->where(Penduduk::id_jenis_pendidikan, $request->pendidikan);
+            $data =  $data->where(Penduduk::id_jenis_pendidikan, $request->pendidikan);
         }
 
         if ($request->has('pekerjaan') && $request->pekerjaan) {
-            $data->where(Penduduk::id_master_pekerjaan, $request->pekerjaan);
+            $data = $data->where(Penduduk::id_master_pekerjaan, $request->pekerjaan);
         }
 
         if ($request->has('goldar') && $request->goldar != null) {
-            $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
+            $data = $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
         }
 
         if ($request->has('gender') && $request->gender) {
-            $data->where(Penduduk::id_jenis_kelamin, $request->gender);
+            $data = $data->where(Penduduk::id_jenis_kelamin, $request->gender);
         }
 
         if ($request->has('agama') && $request->agama) {
-            $data->where(Penduduk::id_jenis_agama, $request->agama);
+            $data = $data->where(Penduduk::id_jenis_agama, $request->agama);
         }
 
         if ($request->has('umur') && $request->umur != null) {
             $awal = date('Y') - $request->umur;
             $awal = Carbon::create($awal, 1, 1)->addYear()->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir < "' . $awal . '"');
+            $data = $data->whereRaw('tanggal_lahir < "' . $awal . '"');
         }
         if ($request->has('umur2') && $request->umur2 != null) {
             $akhir = date('Y') - $request->umur2;
             $akhir = Carbon::create($akhir, 1, 1)->format('Y-m-d');
-            $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
+            $data = $data->whereRaw('tanggal_lahir >= "' . $akhir . '"');
         }
 
         $data->where('is_penduduk', true);
 
         if (auth()->user()->role == 'ketua_rt' && auth()->user()->ketua_rt) {
-            $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
-            $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
+            $data = $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
+            $data = $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
         }
 
         $data = $data->orderBy('created_at', 'DESC')->get();
