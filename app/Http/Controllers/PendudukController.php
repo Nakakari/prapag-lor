@@ -242,34 +242,52 @@ class PendudukController extends Controller
         if ($request->query('btnType') == 'btnExcel') {
             $name = $namaFile . '.xlsx';
             $type = \Maatwebsite\Excel\Excel::XLSX;
-            return Excel::download(
-                new RegisterPendudukExport(
-                    $request->query('nik'),
-                    $request->query('no_kk'),
-                    $request->query('nama'),
-                    $request->query('pendidikan'),
-                    $request->query('umur'),
-                    $request->query('umur2'),
-                    $request->query('pekerjaan'),
-                    $request->query('goldar'),
-                    $request->query('gender'),
-                    $request->query('agama'),
-                    $request->query('rw'),
-                    $request->query('rt'),
-                ),
-                $name,
-                $type
-            );
+            // return Excel::download(
+            //     new RegisterPendudukExport(
+            //         $request->query('nik'),
+            //         $request->query('no_kk'),
+            //         $request->query('nama'),
+            //         $request->query('pendidikan'),
+            //         $request->query('umur'),
+            //         $request->query('umur2'),
+            //         $request->query('pekerjaan'),
+            //         $request->query('goldar'),
+            //         $request->query('gender'),
+            //         $request->query('agama'),
+            //         $request->query('rw'),
+            //         $request->query('rt'),
+            //     ),
+            //     $name,
+            //     $type
+            // );
         } else {
             $name = $namaFile . '.pdf';
             $type = \Maatwebsite\Excel\Excel::MPDF;
-            $data = [
-                'data' => $this->queryPenduduk($request),
-            ];
-            // dd($data);
-            $pdf = PDF::loadView('penduduk.export.register-penduduk-pdf', $data)->setPaper('A4', 'landscape');
-            return $pdf->stream($name);
+            // $data = [
+            //     'data' => $this->queryPenduduk($request),
+            // ];
+            // // dd($data);
+            // $pdf = PDF::loadView('penduduk.export.register-penduduk-pdf', $data)->setPaper('A4', 'landscape');
+            // return $pdf->stream($name);
         }
+        return Excel::download(
+            new RegisterPendudukExport(
+                $request->query('nik'),
+                $request->query('no_kk'),
+                $request->query('nama'),
+                $request->query('pendidikan'),
+                $request->query('umur'),
+                $request->query('umur2'),
+                $request->query('pekerjaan'),
+                $request->query('goldar'),
+                $request->query('gender'),
+                $request->query('agama'),
+                $request->query('rw'),
+                $request->query('rt'),
+            ),
+            $name,
+            $type
+        );
     }
 
     public function queryPenduduk($request)
