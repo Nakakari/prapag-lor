@@ -266,11 +266,8 @@ class PendudukController extends Controller
             $data = [
                 'data' => $this->queryPenduduk($request),
             ];
-            $pdf = LaravelMpdf::loadView('penduduk.export.register-penduduk-pdf', $data, [], [
-                'title' => 'Export Penduduk',
-                'format' => 'A3-L'
-            ]);
-            return $pdf->stream('Export Penduduk.pdf');
+            $pdf = PDF::loadView('penduduk.export.register-penduduk-pdf', $data)->setPaper('A3-L', 'landscape');
+            return $pdf->stream($name);
         }
     }
 
