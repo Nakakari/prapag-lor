@@ -343,7 +343,7 @@
                                         <span>00{{ $row->rt->name }}</span>
                                     </td>
                                     <td style="white-space: nowrap;">
-                                        <span>00{{ $row->rt->rw->name }}</span>
+                                        <span>00{{ $row->rw->name }}</span>
 
                                     </td>
                                     <td style="white-space: nowrap;">

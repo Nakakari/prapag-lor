@@ -53,6 +53,11 @@ class Penduduk extends Model
         return $this->belongsTo(DataRt::class, 'id_rt', 'id');
     }
 
+    public function rw()
+    {
+        return $this->belongsTo(DataRw::class, 'id_rw', 'id');
+    }
+
     public function pekerjaan()
     {
         return $this->belongsTo(JenisPekerjaan::class, 'id_master_pekerjaan', 'id');
