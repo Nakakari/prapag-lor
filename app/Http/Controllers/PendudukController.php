@@ -295,41 +295,41 @@ class PendudukController extends Controller
         $data = Penduduk::query();
 
         if ($request->has('rt') && $request->rt) {
-            $data = $data->where(Penduduk::id_rt, $request->rt);
+            $data = $data->where('id_rt', $request->rt);
         }
 
         if ($request->has('rw') && $request->rw) {
-            $data = $data->where(Penduduk::id_rw, $request->rw);
+            $data = $data->where('id_rw', $request->rw);
         }
 
         if ($request->has('nik') && $request->nik != null) {
-            $data = $data->where(Penduduk::nik, '=', $request->nik);
+            $data = $data->where('nik', '=', $request->nik);
         }
         if ($request->has('no_kk') && $request->no_kk != null) {
-            $data = $data->where(Penduduk::no_kk, '=', $request->no_kk);
+            $data = $data->where('no_kk', '=', $request->no_kk);
         }
         if ($request->has('nama') && $request->nama != null) {
-            $data = $data->where(Penduduk::nama, '=', $request->nama);
+            $data = $data->where('nama', '=', $request->nama);
         }
 
         if ($request->has('pendidikan') && $request->pendidikan) {
-            $data =  $data->where(Penduduk::id_jenis_pendidikan, $request->pendidikan);
+            $data =  $data->where('id_jenis_pendidikan', $request->pendidikan);
         }
 
         if ($request->has('pekerjaan') && $request->pekerjaan) {
-            $data = $data->where(Penduduk::id_master_pekerjaan, $request->pekerjaan);
+            $data = $data->where('id_master_pekerjaan', $request->pekerjaan);
         }
 
         if ($request->has('goldar') && $request->goldar != null) {
-            $data = $data->where(Penduduk::id_jenis_golongan_darah, $request->goldar);
+            $data = $data->where('id_jenis_golongan_darah', $request->goldar);
         }
 
         if ($request->has('gender') && $request->gender) {
-            $data = $data->where(Penduduk::id_jenis_kelamin, $request->gender);
+            $data = $data->where('id_jenis_kelamin', $request->gender);
         }
 
         if ($request->has('agama') && $request->agama) {
-            $data = $data->where(Penduduk::id_jenis_agama, $request->agama);
+            $data = $data->where('id_jenis_agama', $request->agama);
         }
 
         if ($request->has('umur') && $request->umur != null) {
@@ -346,8 +346,8 @@ class PendudukController extends Controller
         $data->where('is_penduduk', true);
 
         if (auth()->user()->role == 'ketua_rt' && auth()->user()->ketua_rt) {
-            $data = $data->where(Penduduk::id_rt, auth()->user()->ketua_rt->rt);
-            $data = $data->where(Penduduk::id_rw, auth()->user()->ketua_rt->rw);
+            $data = $data->where('id_rt', auth()->user()->ketua_rt->rt);
+            $data = $data->where('id_rw', auth()->user()->ketua_rt->rw);
         }
 
         $data = $data->orderBy('created_at', 'DESC')->get();
