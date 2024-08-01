@@ -538,7 +538,7 @@
 
                 $.each(rts, function(index, val) {
                     $('#rt, #filter-rt').append(
-                        `<option value="${val.id}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
+                        `<option value="${val.name}" data-ketua-rt="${val.ketua_rt}">00${val.name}</option>`
                     )
                 })
 
