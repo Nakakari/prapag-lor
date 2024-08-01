@@ -75,7 +75,7 @@
                     00{{ $row->rt->name }}
                 </td>
                 <td style="">
-                    00{{ $row->rt->rw->name }}
+                    00{{ $row->rw->name }}
 
                 </td>
                 <td style="">

@@ -119,7 +119,7 @@
                     00{{ $row->rt->name }}
                 </td>
                 <td class="border_all_non_right" style="">
-                    00{{ $row->rt->rw->name }}
+                    00{{ $row->rw->name }}
 
                 </td>
                 <td class="border_all_non_right" style="">
