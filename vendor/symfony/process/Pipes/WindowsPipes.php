@@ -53,7 +53,7 @@ class WindowsPipes extends AbstractPipes
             set_error_handler(function ($type, $msg) use (&$lastError) { $lastError = $msg; });
             for ($i = 0;; ++$i) {
                 foreach ($pipes as $pipe => $name) {
-                    $file = sprintf('%s\\sf_proc_%02X.%s', $tmpDir, $i, $name);
+                    $file = \sprintf('%s\\sf_proc_%02X.%s', $tmpDir, $i, $name);
 
                     if (!$h = fopen($file.'.lock', 'w')) {
                         if (file_exists($file.'.lock')) {
@@ -140,7 +140,7 @@ class WindowsPipes extends AbstractPipes
             if ($w) {
                 @stream_select($r, $w, $e, 0, Process::TIMEOUT_PRECISION * 1E6);
             } elseif ($this->fileHandles) {
-                usleep(Process::TIMEOUT_PRECISION * 1E6);
+                usleep((int) (Process::TIMEOUT_PRECISION * 1E6));
             }
         }
         foreach ($this->fileHandles as $type => $fileHandle) {

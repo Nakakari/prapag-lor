@@ -67,4 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('upload', 'upload')->name('data-kematian.upload');
     });
     Route::resource('data-kematian', DataKematianController::class);
+
+    // Surat-surat
+    require __DIR__ . '/surat/surat-kuasa.php';
 });

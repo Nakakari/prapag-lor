@@ -59,6 +59,22 @@
             </div>
         </div>
     </li>
+    @if (auth()->user()->role == 'admin')
+        <li class="nav-item {{ active('surat-kuasa.*') }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#surat-kuasa"
+                aria-expanded="true" aria-controls="surat-kuasa">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Surat-surat</span>
+            </a>
+            <div id="surat-kuasa" class="collapse {{ active('surat-kuasa.*', 'show') }}" aria-labelledby="headingTwo"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ active(['surat-kuasa.*', 'not:surat-kuasa.rekap']) }}"
+                        href="{{ route('surat-kuasa.index') }}">Surat Kuasa</a>
+                </div>
+            </div>
+        </li>
+    @endif
     <li class="nav-item">
         <a class="nav-link" href="{{ route('penduduk.index') }}">
             <i class="fas fa-fw fa-users"></i>
