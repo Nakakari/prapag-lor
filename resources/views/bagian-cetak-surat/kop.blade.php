@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 <tr>
     <td style="border-bottom: 3px solid #000; width: 20%;">
         <center>
-            <img src="img/logo.png" style="width: 95px; height: 95px;padding-left: 20px; padding-bottom: 10px;"
-                align="middle" />
+            <img src="https://prapaglor.net/img/logo-brebes.png"
+                style="width: 95px; height: 95px;padding-left: 20px; padding-bottom: 10px;" align="middle" />
         </center>
     </td>
     <td style="border-bottom: 3px solid #000;padding-left: 0px; padding-top:1px; padding-bottom:1px; width: 80%;">
