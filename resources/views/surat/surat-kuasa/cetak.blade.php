@@ -14,7 +14,8 @@ use App\Helpers\TerbilangHelper;
 <body style="font-family: Calibri, sans-serif; font-size: 12px; overflow-x:auto;">
 
     <?php
-    $terbilang = new TerbilangHelper()->terbilang($data->nominal ?? 0);
+    $helper = new \App\Helpers\TerbilangHelper();
+    $terbilang = $helper->terbilang($data->nominal ?? 0);
     ?>
     <table width="100%" style="padding:0;border-spacing:0px;">
         @include('bagian-cetak-surat.kop')

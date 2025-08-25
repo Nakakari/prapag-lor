@@ -10,6 +10,7 @@ use App\Http\Requests\SuratKuasaRequest;
 use App\Models\Surat\SumberDana;
 use App\Models\Surat\SuratKeluar;
 use App\Models\Surat\SuratKuasa;
+use App\Models\Surat\SuratKuasaDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +58,16 @@ class SuratKuasaController extends Controller
                 'created_by' => Auth::id(),
                 'nominal' => str_ireplace(".", "", $attr['nominal']),
             ]);
-            SuratKuasa::create($form);
+            // dd($form['id_sumber_dana']);
+            $suratKuasa = SuratKuasa::create($form);
+            if (isset($form['id_sumber_dana'])) {
+                foreach ($form['id_sumber_dana'] as $idSumberDana) {
+                    SuratKuasaDetail::create([
+                        'id_surat_kuasa' => $suratKuasa->id,
+                        'id_sumber_dana' => $idSumberDana,
+                    ]);
+                }
+            }
             DB::commit();
             return redirect()->route('surat-kuasa.index')->with('status', 'Berhasil Tambah Data');
         } catch (\Exception $e) {
@@ -77,7 +87,8 @@ class SuratKuasaController extends Controller
 
     public function edit(int $id)
     {
-        $data = SuratKuasa::where('id', $id)->firstOrFail();
+        $data = SuratKuasa::with('suratKuasaDetail')->where('id', $id)->firstOrFail();
+        // dd($data);
 
         $lastNumber = $this->generateNomor();
 
@@ -100,6 +111,16 @@ class SuratKuasaController extends Controller
             ]);
             $data = SuratKuasa::where('id', $id)->first();
             $data->update($form);
+
+            SuratKuasaDetail::where('id_surat_kuasa', $id)->delete();
+            if (isset($form['id_sumber_dana'])) {
+                foreach ($form['id_sumber_dana'] as $idSumberDana) {
+                    SuratKuasaDetail::create([
+                        'id_surat_kuasa' => $id,
+                        'id_sumber_dana' => $idSumberDana,
+                    ]);
+                }
+            }
             DB::commit();
             return redirect()->route('surat-kuasa.index')->with('status', 'Berhasil Update Data');
         } catch (\Exception $e) {
@@ -124,6 +145,8 @@ class SuratKuasaController extends Controller
             DB::transaction(
                 function () use ($id) {
                     $data = SuratKuasa::findOrFail($id);
+                    SuratKuasaDetail::where('id_surat_kuasa', $id)->delete();
+                    Log::info('Surat Kuasa Detail Deleted');
                     $data->delete();
                     Log::info('Surat Kuasa Deleted');
                 }
@@ -161,7 +184,7 @@ class SuratKuasaController extends Controller
 
     public function querySuratKuasa($request)
     {
-        $data = SuratKuasa::query();
+        $data = SuratKuasa::query() ->with(['suratKuasaDetail.sumberDana']) ;
         $bulan = $request->filled('bulan') && $request->bulan !== 'undefined' ? $request->bulan : null;
         $tahun = $request->filled('tahun') && $request->tahun !== 'undefined' ? $request->tahun : null;
 

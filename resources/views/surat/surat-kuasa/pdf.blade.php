@@ -54,23 +54,24 @@
 
     <thead>
         <tr>
-            <th colspan="13" style="font-weight: bold;">
+            <th colspan="14" style="font-weight: bold;">
                 PEMERINTAH DESA {{ strtoupper(AplikasiHelper::desa) }}<br>
                 {{ strtoupper(AplikasiHelper::desa . ', ' . AplikasiHelper::kecamatan . ', ' . AplikasiHelper::kabupaten . ', ' . AplikasiHelper::provinsi) }}
             </th>
         </tr>
         <tr>
-            <th colspan="13" style="text-align: center; font-weight: bold;">SURAT KUASA
+            <th colspan="14" style="text-align: center; font-weight: bold;">SURAT KUASA
             </th>
         </tr>
         <tr>
-            <th colspan="13">&nbsp;</th>
+            <th colspan="14">&nbsp;</th>
         </tr>
 
         <tr>
             <th rowspan="2" class="border_all_non_right">NO</th>
             <th rowspan="2" class="border_all_non_right">NOMOR SURAT</th>
             <th rowspan="2" class="border_all_non_right">TANGGAL SURAT</th>
+            <th rowspan="2" class="border_all_non_right">SUMBER DANA</th>
             <th colspan="2" class="border_all_non_right" style="text-align: center">PEMBERI KUASA</th>
             <th colspan="2" class="border_all_non_right" style="text-align: center">PENERIMA KUASA</th>
             <th rowspan="2" class="border_all_non_right">PERIODE KUASA</th>
@@ -93,6 +94,11 @@
                 <td class="border_all_non_right" style="text-align:center;">{{ $loop->iteration }}</td>
                 <td class="border_all_non_right">{{ $row->nomor_surat }}</td>
                 <td class="border_all_non_right">{{ date('d/m/Y', strtotime($row->tanggal)) }}</td>
+                <td class="border_all_non_right">
+                    @foreach ($row->suratKuasaDetail as $detail)
+                        {{ $detail->sumberDana->nama ?? '-' }},
+                    @endforeach
+                </td>
 
                 <td class="border_all_non_right">"{{ $row->nik_pemberi_kuasa }}</td>
                 <td class="border_all_non_right">{{ $row->nama_pemberi_kuasa }}</td>

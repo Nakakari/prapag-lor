@@ -21,4 +21,9 @@ class SuratKuasa extends Model
     {
         return $this->belongsTo(SumberDana::class, 'id_sumber_dana', 'id');
     }
+
+    public function suratKuasaDetail()
+    {
+        return $this->hasMany(SuratKuasaDetail::class, 'id_surat_kuasa', 'id');
+    }
 }

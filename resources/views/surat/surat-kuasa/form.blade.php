@@ -33,14 +33,32 @@
                     <div class="row mb-2">
                         <div class="col-lg-6">
                             <label for="id_sumber_dana" class="">Sumber Dana</label>
-                            <select id="id_sumber_dana" name="id_sumber_dana" class="form-control" required>
-                                <option value="">Silakan Pilih</option>
+                            @php
+                                $selected = collect(
+                                    old(
+                                        'id_sumber_dana',
+                                        $data && $data->suratKuasaDetail
+                                            ? $data->suratKuasaDetail->pluck('id_sumber_dana')->toArray()
+                                            : [],
+                                    ),
+                                )->map(fn($v) => (string) $v);
+                            @endphp
+
+                            <select id="id_sumber_dana" name="id_sumber_dana[]" class="form-control" multiple required
+                                data-placeholder="Silakan Pilih">
+
                                 @foreach ($sumberDanas as $sumberDana)
                                     <option value="{{ $sumberDana['id'] }}"
-                                        {{ $data ? ($data->id_sumber_dana == $sumberDana['id'] ? 'selected' : '') : '' }}>
-                                        {{ $sumberDana['nama'] }}</option>
+                                        {{ $selected->contains((string) $sumberDana['id']) ? 'selected' : '' }}>
+                                        {{ $sumberDana['nama'] }}
+                                    </option>
                                 @endforeach
                             </select>
+
+
+                            @error('id_sumber_dana')
+                                <div class="text-danger small">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -134,7 +152,7 @@
                         </div>
                     </div>
                     <hr>
-                    <h6>Perihal Surat</h6>
+                    <h6>Jumlah Dana</h6>
                     <div class="row mb-2">
                         <div class="col-lg-6">
                             <label for="nominal">Nominal</label>
@@ -242,6 +260,14 @@
 
     <script>
         $(function() {
+            $('#id_sumber_dana').select2({
+                placeholder: $('#id_sumber_dana').data('placeholder'),
+                allowClear: true,
+                width: '100%'
+            });
+        });
+
+        $(function() {
             $('#submitBtn').click(function(e) {
                 e.preventDefault(); // cegah submit dulu
                 let start = $('#start_date').val();
@@ -250,12 +276,25 @@
 
                 // 🔹 cek field required lain
                 $('input[required], select[required], textarea[required]').each(function() {
-                    if (!$(this).val().trim()) {
-                        error = 'Field ' + ($(this).attr('name') || $(this).attr('id')) +
-                            ' wajib diisi.';
-                        return false; // stop loop kalau ada yang kosong
+                    let value = $(this).val();
+
+                    // kalau select multiple (array/null)
+                    if ($(this).is('select[multiple]')) {
+                        if (!value || value.length === 0) {
+                            error = 'Field ' + ($(this).attr('name') || $(this).attr('id')) +
+                                ' wajib diisi.';
+                            return false; // stop loop
+                        }
+                    } else {
+                        // input biasa (string)
+                        if (!value || !String(value).trim()) {
+                            error = 'Field ' + ($(this).attr('name') || $(this).attr('id')) +
+                                ' wajib diisi.';
+                            return false; // stop loop
+                        }
                     }
                 });
+
 
                 // 🔹 cek aturan khusus tanggal
                 if (!error) {

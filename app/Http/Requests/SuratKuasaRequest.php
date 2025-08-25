@@ -24,7 +24,8 @@ class SuratKuasaRequest extends FormRequest
     public function rules()
     {
         return [
-            "id_sumber_dana" => ['required'],
+            'id_sumber_dana'   => ['required', 'array', 'min:1'],
+            'id_sumber_dana.*' => ['integer', 'exists:sumber_dana,id'],
             "nama_penerima_kuasa" => ['required'],
             "nama_pemberi_kuasa" => ['required'],
             "tanggal_surat" => ['required'],

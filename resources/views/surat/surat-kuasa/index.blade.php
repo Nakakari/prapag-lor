@@ -110,6 +110,7 @@
                                 <th rowspan="2">NO</th>
                                 <th rowspan="2">NOMOR SURAT</th>
                                 <th rowspan="2">TANGGAL SURAT</th>
+                                <th rowspan="2">SUMBER DANA</th>
                                 <th colspan="2">PEMBERI KUASA</th>
                                 <th colspan="2">PENERIMA KUASA</th>
                                 <th rowspan="2">PEMBUAT SURAT</th>
@@ -129,6 +130,12 @@
                                     <td style="white-space: nowrap;" class="text-center">{{ $loop->iteration }}</td>
                                     <td style="white-space: nowrap;">{{ $row->nomor_surat }}</td>
                                     <td style="white-space: nowrap;">{{ date('d/m/Y', strtotime($row->tanggal)) }}</td>
+
+                                    <td style="white-space: nowrap;">
+                                        @foreach ($row->suratKuasaDetail as $detail)
+                                            {{ $detail->sumberDana->nama ?? '-' }},
+                                        @endforeach
+                                    </td>
                                     <td style="white-space: nowrap;">{{ $row->nik_pemberi_kuasa }}
                                     </td>
                                     <td style="white-space: nowrap;">
