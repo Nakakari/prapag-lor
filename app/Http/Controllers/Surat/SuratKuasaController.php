@@ -35,8 +35,8 @@ class SuratKuasaController extends Controller
 
         $lastNumber = $this->generateNomor();
 
-        $nomor = ($lastNumber ?? 0) + 1;
-        $nomorSuratKeluar = str_pad($nomor, 3, '0', STR_PAD_LEFT) . '/' . (new BulanHelper())->bulanRomawi() . '/' . date('Y');
+        // $nomor = ($lastNumber ?? 0) + 1;
+        $nomorSuratKeluar = '/' . (new BulanHelper())->bulanRomawi() . '/' . date('Y');
 
         $penanggungJawab = (new PegawaiHelper())->listPegawai();
         $sumberDanas = SumberDana::all();
@@ -48,12 +48,12 @@ class SuratKuasaController extends Controller
         DB::beginTransaction();
         try {
             $attr = $request->validated();
-            $nomor = ($this->generateNomor() ?? 0) + 1;
-            $nomorSuratKeluar = str_pad($nomor, 3, '0', STR_PAD_LEFT) . '/' . (new BulanHelper())->bulanRomawi() . '/' . date('Y');
+            // $nomor = ($this->generateNomor() ?? 0) + 1;
+            $nomorSuratKeluar = '/' . (new BulanHelper())->bulanRomawi() . '/' . date('Y');
 
             $form = array_merge($attr, [
                 'tanggal' => date('Y-m-d'),
-                'nomor' => $nomor,
+                // 'nomor' => $nomor,
                 'nomor_surat' => $nomorSuratKeluar,
                 'created_by' => Auth::id(),
                 'nominal' => str_ireplace(".", "", $attr['nominal']),
@@ -132,6 +132,7 @@ class SuratKuasaController extends Controller
     public function cetak(int $id)
     {
         $data = SuratKuasa::where('id', $id)->firstOrFail();
+        $data->nomor_surat = $data->nomor . $data->nomor_surat;
         $judul = 'Surat Kuasa';
         // return view('surat.surat-kuasa.cetak', compact(['data', 'judul']));
         $pdf = PDF::loadView('surat.surat-kuasa.cetak', compact(['data', 'judul']))->setPaper('a4', 'portrait');

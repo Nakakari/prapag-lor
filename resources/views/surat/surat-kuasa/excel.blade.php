@@ -43,7 +43,7 @@
         @foreach ($data as $row)
             <tr>
                 <td style="text-align:center;">{{ $loop->iteration }}</td>
-                <td>{{ $row->nomor_surat }}</td>
+                <td>{{ $row->nomor . $row->nomor_surat }}</td>
                 <td>{{ date('d/m/Y', strtotime($row->tanggal)) }}</td>
                 <td>
                     @foreach ($row->suratKuasaDetail as $detail)

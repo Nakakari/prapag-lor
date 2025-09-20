@@ -30,6 +30,7 @@ class SuratKuasaRequest extends FormRequest
             "nama_pemberi_kuasa" => ['required'],
             "tanggal_surat" => ['required'],
             "nomor_surat" => ['required'],
+            "nomor" => ['required'],
             "nik_pemberi_kuasa" => ['required'],
             "jabatan_pemberi_kuasa" => ['required'],
             "no_hp_pemberi_kuasa" => ['required'],

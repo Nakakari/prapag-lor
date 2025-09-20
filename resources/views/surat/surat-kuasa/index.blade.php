@@ -128,7 +128,7 @@
                             @foreach ($data as $row)
                                 <tr>
                                     <td style="white-space: nowrap;" class="text-center">{{ $loop->iteration }}</td>
-                                    <td style="white-space: nowrap;">{{ $row->nomor_surat }}</td>
+                                    <td style="white-space: nowrap;">{{ $row->nomor . $row->nomor_surat }}</td>
                                     <td style="white-space: nowrap;">{{ date('d/m/Y', strtotime($row->tanggal)) }}</td>
 
                                     <td style="white-space: nowrap;">

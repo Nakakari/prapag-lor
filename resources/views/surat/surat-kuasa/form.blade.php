@@ -1,4 +1,20 @@
 @extends('layouts.app')
+@push('styles')
+    <style>
+        .text-end-input {
+            text-align: right !important;
+        }
+
+        .text-end-input::placeholder {
+            text-align: right;
+            opacity: 0.6;
+        }
+
+        .form-control.text-end-input {
+            text-align: right !important;
+        }
+    </style>
+@endpush
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -65,8 +81,14 @@
                         <div class="col-lg-6">
                             {!! Form::text('tanggal_surat', 'Tanggal Surat', $data ? $data->tanggal : date('Y-m-d'))->type('date')->required() !!}
                         </div>
-                        <div class="col-lg-6">
-                            {!! Form::text('nomor_surat', 'Nomer Surat', $data ? $data->nomor_surat : $nomorSuratKeluar)->required()->readonly() !!}
+                        <div class="col-lg-2">
+                            <label for="">Nomer Surat</label>
+                            <input type="text" class="form-control text-end-input" name="nomor" id="nomor"
+                                value="{{ $data ? $data->nomor : '' }}" required>
+
+                        </div>
+                        <div class="col-lg-4">
+                            {!! Form::text('nomor_surat', '&nbsp;', $data ? $data->nomor_surat : $nomorSuratKeluar)->required()->readonly() !!}
                         </div>
                     </div>
                     <hr>
@@ -141,7 +163,8 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="no_hp_penerima_kuasa">No. HP</label>
-                            <input type="text" class="form-control" id="no_hp_penerima_kuasa" name="no_hp_penerima_kuasa"
+                            <input type="text" class="form-control" id="no_hp_penerima_kuasa"
+                                name="no_hp_penerima_kuasa"
                                 value="{{ old('no_hp_penerima_kuasa') ?? ($data ? $data->no_hp_penerima_kuasa : '') }}" />
                         </div>
                     </div>
@@ -156,7 +179,8 @@
                     <div class="row mb-2">
                         <div class="col-lg-6">
                             <label for="nominal">Nominal</label>
-                            <input type="text" class="form-control text-end" id="nominal" name="nominal" required
+                            <input type="text" class="form-control text-end-input" id="nominal" name="nominal"
+                                required
                                 value="{{ old('nominal') ?? ($data ? number_format($data->nominal, 0, ',', '.') : '') }}" />
                         </div>
                         <div class="col-lg-3">
